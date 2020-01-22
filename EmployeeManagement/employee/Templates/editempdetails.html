@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Edit Employee</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css"/>
+    <style>
+    body {font-family: Arial;}
+
+    /* Style the tab */
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+
+    /* Style the buttons inside the tab */
+    .tablink {
+      background-color: #303f9f;
+      color: white;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 7px 16px
+      font-size: 17px;
+      width: 20%;
+    }
+    .tablink.active {
+      background-color: darkblue;
+      color: white;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 7px 16px
+      font-size: 17px;
+      width: 20%;
+        border: 1px solid #ccc;
+    }
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+      background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+      width:100%;
+    }
+    .tablink:hover {
+      background-color: #777;
+    }
+    </style>
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+            integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+            crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+            integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+            crossorigin="anonymous"></script>
+    {% csrf_token %}
+</head>
+
+<body>
+
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h1>EMS</h1>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li class="active">
+                <div>
+                    <div id="profile_photo">
+                    <span>&nbsp;&nbsp;<img src="{% static 'images/profile.jpg' %}" style="height:65px;width:65px;"
+                                           alt="My profile"></span>
+                        <span id="hide">
+                             <h4>&nbsp;&nbsp;&nbsp;{{user.username}}</h4>
+                        <h6>&nbsp;&nbsp;<i id="ho" class="fa fa-circle" aria-hidden="true"></i>&nbsp;Logged in</h6>
+                        </span>
+                    </div>
+                </div>
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                    <i class="fas fa-home"></i>
+                    Admin
+                </a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="{% url 'index.html' %}">Dashboard <i class="fa fa-chevron-right"
+                                                                      aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="#">Company Structure <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="{% url 'showprojects.html' %}">Projects <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="#">Personal Details <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-briefcase"></i>
+                    About
+                </a>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-copy"></i>
+                    Pages
+                </a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="#">People <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="#">Projects <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="#">Reports <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-image"></i>
+                    Portfolio
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-question"></i>
+                    FAQ
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-paper-plane"></i>
+                    Contact
+                </a>
+            </li>
+        </ul>
+
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+        <header>
+            <div class="header">
+                <span>&nbsp;&nbsp;<img src="{% static 'images/cg_logo.jpg' %}" style="height:60px;width:250px;"
+                                       alt="cg image" class="companylogo"></span>
+            </div>
+        </header>
+        <nav class="navbar navbar-expand-lg ">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" class="btn tablink">
+                    <i class="fas fa-align-left"></i>
+                    <span>Capgemini India Pvt Ltd</span>
+                </button>
+                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            {% if user.is_authenticated %}
+                            <a id="mc" class="nav-link blink" href="/user_logout"><i class="fa fa-user"></i> Logout</a>
+                            {% else %}
+                            <a class="nav-link blink" href="/user_login"><i class="fa fa-user"></i> Login</a>
+                            {% endif %}
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                                Help</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div>
+            <div class="headings">
+                <h4 class="pt-3 pl-4" style="color:white;">Edit Employee</h4>
+            </div>
+        </div>
+        <div>
+            <div class="container-fluid">
+                <div class="jumbotron">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="card" style="width: 270px;height:250px;">
+                                <div class="card-header">
+                                    <h5 class="card-title" style="font-weight:bold;">&nbsp;&nbsp;&nbsp;
+                                        {{employee.emp_first_name}}&nbsp;{{employee.emp_last_name}}</h5>
+                                    <p class="card-title" style="font-weight:bold;font-size: 15px;color:black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        {{employee.emp_designation}}</p>
+                                </div>
+                                <div class="card-body">
+                                    <img src="{% static 'images/addprofile.png' %}" style="height:140px;width:225px;;"
+                                         alt="profile image" class="profilelogo">
+                                </div>
+                            </div>
+                            <div class="card" style="width:270px">
+                                <p class="pt-3">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-building"
+                                                                           aria-hidden="true"></i>&nbsp;{{employee.emp_home_number}}
+                                </p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{employee.emp_personal_number}}
+                                </p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;{{employee.emp_email}}
+                                </p>
+                                <p style="color:#6d7fcc;font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;Hire Date</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;{{employee.emp_hire_date}}
+                                </p>
+                                <hr>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-wrench" aria-hidden="true"></i>&nbsp;{{employee.emp_type}}
+                                </p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-globe" aria-hidden="true"></i>&nbsp;{{employee.emp_state}}
+                                </p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{employee.emp_city}}
+                                </p>
+                                <hr>
+                                <p style="color:#6d7fcc;font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;Manager</p>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-male" aria-hidden="true"></i>&nbsp;{{employee.emp_manager_id.emp_first_name}}&nbsp;&nbsp;{{employee.emp_manager_id.emp_last_name}}
+                                </p>
+                                <hr>
+
+                            </div>
+                        </div>
+                        <div class=" leftwindow col-md-8">
+                            <div class="card" style="margin-right:-100px">
+                                <div class="card-body ">
+                                    <div class="nav nav-tabs">
+                                        <button class="tablinks tablink active" id="defaultOpen"
+                                                onclick="openCity(event, 'London')"><h6
+                                                class="mt-2 ml-4"><i class="fa fa-address-card" aria-hidden="true"></i>&nbsp;&nbsp;Personal
+                                        </h6></button>
+                                        <button class="tablinks tablink" onclick="openCity(event, 'Paris')"><h6
+                                                class="mt-2 ml-4"><i class="fa fa-address-card" aria-hidden="true"></i>&nbsp;&nbsp;Job
+                                        </h6></button>
+                                        <button class="tablinks tablink" onclick="openCity(event, 'Tokyo')"><h6
+                                                class="mt-2 ml-4"><i class="fa fa-address-card" aria-hidden="true"></i>&nbsp;&nbsp;Skills
+                                        </h6></button>
+                                    </div>
+                                    <form method="POST" class="post-form"
+                                          action="/update/{{employee.emp_id}}">
+                                        {% csrf_token %}
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="form-row">
+                                                    <div id="London" class="tabcontent">
+                                                        <p>Basic Information</p>
+                                                        <div class="form-group col-md-12">
+                                                            <label class=" col-form-label">Employee Id:</label>
+                                                            <div>
+                                                                <input type="text" class="form-control" name="emp_id"
+                                                                       value=" {{ employee.emp_id }}" readonly="true">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label class=" col-form-label">Employee First Name:</label>
+                                                            <div>
+                                                                <input type="text" class="form-control"
+                                                                       name="emp_first_name"
+                                                                       value="{{ employee.emp_first_name }}">
+                                                            </div>
+                                                            <label class=" col-form-label">Employee Last Name:</label>
+                                                            <div>
+                                                                <input type="text" class="form-control"
+                                                                       name="emp_last_name"
+                                                                       value="{{ employee.emp_last_name }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label class=" col-form-label">Employee Gender:</label>
+                                                            <div>
+                                                                <input type="text" name="emp_gender"
+                                                                       class="form-control"
+                                                                       value="{{ employee.emp_gender }}">
+                                                            </div>
+                                                            <label class=" col-form-label">Employee Email:</label>
+                                                            <div>
+                                                                <input type="text" name="emp_email" class="form-control"
+                                                                       value="{{ employee.emp_email }}">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group col-md-6">
+                                                            <label class=" col-form-label">Employee Date Of
+                                                                Birth:</label>
+                                                            <div>
+                                                                <input type="text" name="emp_dob" class="form-control"
+                                                                       value="{{ employee.emp_dob }}">
+                                                            </div>
+                                                            <label class="col-form-label">Employee Marital
+                                                                Status:</label>
+                                                            <div>
+                                                                <input type="text" name="emp_marital_status"
+                                                                       class="form-control"
+                                                                       value="{{ employee.emp_marital_status  }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="Paris" class="tabcontent">
+                                                        <p>Job Information</p>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="col-form-label">Employee Home Number:</label>
+                                                            <div>
+                                                                <input type="text" name="emp_home_number"
+                                                                       class="form-control"
+                                                                       value="{{ employee.emp_home_number }}">
+
+                                                            </div>
+                                                            <label class=" col-form-label">Employee Personal
+                                                                Number:</label>
+                                                            <div>
+                                                                <input type="text" name="emp_personal_number"
+                                                                       class="form-control"
+                                                                       value=" {{ employee.emp_personal_number }}">
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group col-md-6">
+                                                            <label class="col-form-label">Employee Hire Date:</label>
+                                                            <div>
+                                                                <input type="text" name="emp_hire_date"
+                                                                       class="form-control"
+                                                                       value=" {{ employee.emp_hire_date }}">
+
+                                                            </div>
+                                                            <label class="col-form-label">Employee Designation:</label>
+                                                            <div>
+                                                                <input type="text" name="emp_designation"
+                                                                       class="form-control"
+                                                                       value=" {{ employee.emp_designation }}">
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group col-md-6">
+                                                            <label class="col-form-label">Employee Type:</label>
+                                                            <div>
+                                                                <input type="text" name="emp_type" class="form-control"
+                                                                       value=" {{ employee.emp_type }}">
+
+                                                            </div>
+                                                            <label class="col-form-label">Employee Address:</label>
+                                                            <div>
+                                                                <input type="text" name="emp_address"
+                                                                       class="form-control"
+                                                                       value=" {{ employee.emp_address}}">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="Tokyo" class="tabcontent">
+                                                        <p>Skills Information</p>
+                                                        <div class="form-group col-md-6">
+                                                            <label class=" col-form-label">Employee City:</label>
+                                                            <div>
+                                                                <input type="text" name="emp_city" class="form-control"
+                                                                       value="{{ employee.emp_city }}">
+
+                                                            </div>
+                                                            <label class=" col-form-label">Employee State:</label>
+                                                            <div>
+                                                                <input type="text" name="emp_state" class="form-control"
+                                                                       value="{{ employee.emp_state }}">
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group col-md-6">
+                                                            <label class=" col-form-label">Employee Postal Code:</label>
+                                                            <div>
+                                                                <input type="text" name="emp_postal_code"
+                                                                       class="form-control"
+                                                                       value="{{ employee.emp_postal_code }}">
+
+                                                            </div>
+                                                            <label class="col-form-label">Employee Country:</label>
+                                                            <div>
+                                                                <input type="text" name="emp_country"
+                                                                       class="form-control"
+                                                                       value="{{ employee.emp_country}}">
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group col-md-6">
+                                                            <label class=" col-form-label">Employee Notes:</label>
+                                                            <div>
+                                                                <input type="text" name="emp_notes" class="form-control"
+                                                                       value=" {{ employee.emp_notes }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="col-form-label">Employee Work
+                                                                Location:</label>
+                                                            <div>
+                                                                <input type="text" name="emp_work_location"
+                                                                       class="form-control"
+                                                                       value="{{ employee.emp_work_location }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="col-form-label">Employee Manager:</label>
+                                                            <div>
+                                                                {{ form1.emp_manager_id }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="col-form-label">Employee Project:</label>
+                                                            <div>
+                                                                {{ form1.emp_project_id }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <div>
+                                                            <button type="submit" class="btn btn-primary mt-3">Submit
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+         $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#hide').toggleClass('active');
+
+            });
+        });
+         $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('.tablink').toggleClass('active');
+
+            });
+        });
+
+
+</script>
+
+<script>
+       var flag = false;
+    setInterval(function() {
+        flag = !flag;
+        $("#ho").css("color", flag ? "white" : "springgreen");
+        $("#mc").css("color", flag ? "springgreen" : "white");
+    }, 1000);
+
+
+
+</script>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+
+
+
+
+</script>
+</html>
