@@ -47,8 +47,8 @@ class Employee(models.Model):
     emp_country = models.CharField(max_length=20)
     emp_notes = models.CharField(max_length=250)
     emp_work_location = models.CharField(max_length=20)
-    emp_manager_id = models.ForeignKey('self', on_delete=models.DO_NOTHING, null=True)
-    emp_project_id = models.ForeignKey(ProjectDetails, on_delete=models.CASCADE, null=True)
+    emp_manager_id = models.ForeignKey('self', on_delete=models.DO_NOTHING, null=True,blank = True)
+    emp_project_id = models.ForeignKey(ProjectDetails, on_delete=models.CASCADE, null=True,blank = True)
 
     class meta:
         db_table = "employee"
