@@ -71,6 +71,7 @@
     .tablink:hover {
       background-color: #777;
     }
+
     </style>
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -116,7 +117,8 @@
                         <a href="#">Company Structure <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                     </li>
                     <li>
-                        <a href="{% url 'showprojects.html' %}">Projects <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                        <a href="{% url 'showprojects.html' %}">Projects <i class="fa fa-chevron-right"
+                                                                            aria-hidden="true"></i></a>
                     </li>
                     <li>
                         <a href="#">Personal Details <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
@@ -279,7 +281,7 @@
                                                         <div class="form-group col-md-12">
                                                             <label class=" col-form-label">Employee Id:</label>
                                                             <div>
-                                                                <input type="text" class="form-control" name="emp_id"
+                                                                <input type="number" class="form-control" name="emp_id"
                                                                        value=" {{ employee.emp_id }}" readonly="true">
                                                             </div>
                                                         </div>
@@ -306,7 +308,8 @@
                                                             </div>
                                                             <label class=" col-form-label">Employee Email:</label>
                                                             <div>
-                                                                <input type="text" name="emp_email" class="form-control"
+                                                                <input type="email" name="emp_email"
+                                                                       class="form-control"
                                                                        value="{{ employee.emp_email }}">
                                                             </div>
                                                         </div>
@@ -315,7 +318,7 @@
                                                             <label class=" col-form-label">Employee Date Of
                                                                 Birth:</label>
                                                             <div>
-                                                                <input type="text" name="emp_dob" class="form-control"
+                                                                <input type="date" name="emp_dob" class="form-control"
                                                                        value="{{ employee.emp_dob }}">
                                                             </div>
                                                             <label class="col-form-label">Employee Marital
@@ -332,7 +335,7 @@
                                                         <div class="form-group col-md-6">
                                                             <label class="col-form-label">Employee Home Number:</label>
                                                             <div>
-                                                                <input type="text" name="emp_home_number"
+                                                                <input type="number" name="emp_home_number"
                                                                        class="form-control"
                                                                        value="{{ employee.emp_home_number }}">
 
@@ -340,7 +343,7 @@
                                                             <label class=" col-form-label">Employee Personal
                                                                 Number:</label>
                                                             <div>
-                                                                <input type="text" name="emp_personal_number"
+                                                                <input type="number" name="emp_personal_number"
                                                                        class="form-control"
                                                                        value=" {{ employee.emp_personal_number }}">
 
@@ -350,7 +353,7 @@
                                                         <div class="form-group col-md-6">
                                                             <label class="col-form-label">Employee Hire Date:</label>
                                                             <div>
-                                                                <input type="text" name="emp_hire_date"
+                                                                <input type="date" name="emp_hire_date"
                                                                        class="form-control"
                                                                        value=" {{ employee.emp_hire_date }}">
 
@@ -373,9 +376,8 @@
                                                             </div>
                                                             <label class="col-form-label">Employee Address:</label>
                                                             <div>
-                                                                <input type="text" name="emp_address"
-                                                                       class="form-control"
-                                                                       value=" {{ employee.emp_address}}">
+                                                                <textarea name="emp_address"
+                                                                          class="form-control">{{ employee.emp_address}}</textarea>
 
                                                             </div>
                                                         </div>
@@ -400,7 +402,7 @@
                                                         <div class="form-group col-md-6">
                                                             <label class=" col-form-label">Employee Postal Code:</label>
                                                             <div>
-                                                                <input type="text" name="emp_postal_code"
+                                                                <input type="number" name="emp_postal_code"
                                                                        class="form-control"
                                                                        value="{{ employee.emp_postal_code }}">
 
@@ -417,8 +419,7 @@
                                                         <div class="form-group col-md-6">
                                                             <label class=" col-form-label">Employee Notes:</label>
                                                             <div>
-                                                                <input type="text" name="emp_notes" class="form-control"
-                                                                       value=" {{ employee.emp_notes }}">
+                                                                <textarea name="emp_notes" class="form-control">{{ employee.emp_notes }}</textarea>
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-md-6">
@@ -445,7 +446,7 @@
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <div>
-                                                            <button type="submit" class="btn btn-primary mt-3">Submit
+                                                            <button type="submit" class="btn btn-primary mt-3">Update
                                                             </button>
                                                         </div>
                                                     </div>
@@ -498,6 +499,7 @@
         });
 
 
+
 </script>
 
 <script>
@@ -507,6 +509,7 @@
         $("#ho").css("color", flag ? "white" : "springgreen");
         $("#mc").css("color", flag ? "springgreen" : "white");
     }, 1000);
+
 
 
 
@@ -528,6 +531,7 @@ function openCity(evt, cityName) {
 }
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
+
 
 
 

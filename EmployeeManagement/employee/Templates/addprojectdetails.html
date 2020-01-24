@@ -237,30 +237,39 @@
                                     <div class="form-row">
                                         <div id="London" class="tabcontent">
                                             <p>Basic Information</p>
-                                            <div class="form-group col-md-12">
+                                            <div class="form-group col-md-9 form-row">
+                                                <div class="col">
                                                 <label class=" col-form-label">Project Id:</label>
                                                 <div>
-                                                    {{ form1.project_id }}
+                                                    {{ form.project_id }}
+                                                </div>
+                                                </div>
+                                                <div class="col">
+                                                    {%for error in form.project_id.errors %}
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <h6 class="mt-1">{{error}}</h6>
+                                                    </div>
+                                                    {%endfor%}
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label class=" col-form-label">Project Name:</label>
                                                 <div>
-                                                    {{ form1.project_name }}
+                                                    {{ form.project_name }}
                                                 </div>
                                                 <label class=" col-form-label">Project Description:</label>
                                                 <div>
-                                                    {{ form1.project_description }}
+                                                    {{ form.project_description }}
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label class=" col-form-label">Project Company:</label>
                                                 <div>
-                                                    {{ form1.project_company }}
+                                                    {{ form.project_company }}
                                                 </div>
                                                 <label class=" col-form-label">Project Owner:</label>
                                                 <div>
-                                                    {{ form1.project_owner }}
+                                                    {{ form.project_owner }}
 
                                                 </div>
                                             </div>
@@ -270,11 +279,11 @@
                                             <div class="form-group col-md-6">
                                                 <label class="col-form-label">Project Category:</label>
                                                 <div>
-                                                    {{ form1.project_category }}
+                                                    {{ form.project_category }}
                                                 </div>
                                                 <label class=" col-form-label">Project Status:</label>
                                                 <div>
-                                                    {{ form1.project_status }}
+                                                    {{ form.project_status }}
 
                                                 </div>
                                             </div>
@@ -282,11 +291,11 @@
                                             <div class="form-group col-md-6">
                                                 <label class="col-form-label">Project Start Date:</label>
                                                 <div>
-                                                    {{ form1.project_start_date }}
+                                                    {{ form.project_start_date }}
                                                 </div>
                                                 <label class="col-form-label">Project End Date:</label>
                                                 <div>
-                                                    {{ form1.project_end_date }}
+                                                    {{ form.project_end_date }}
 
                                                 </div>
                                             </div>
@@ -297,12 +306,12 @@
                                             <div class="form-group col-md-6">
                                                 <label class=" col-form-label">Project Budget:</label>
                                                 <div>
-                                                    {{ form1.project_budget }}
+                                                    {{ form.project_budget }}
 
                                                 </div>
                                                 <label class=" col-form-label">Project Summary:</label>
                                                 <div>
-                                                    {{ form1.project_summary }}
+                                                    {{ form.project_summary }}
 
                                                 </div>
                                             </div>
@@ -310,7 +319,7 @@
                                             <div class="form-group col-md-6">
                                                 <label class=" col-form-label">Project Record:</label>
                                                 <div>
-                                                    {{ form1.project_record }}
+                                                    {{ form.project_record }}
 
                                                 </div>
                                             </div>

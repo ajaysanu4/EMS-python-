@@ -28,7 +28,7 @@ urlpatterns = [
     path('user_logout', views.user_logout, name='user_logout.html'),
     path('add3', views.add3, name='addprojectdetails.html'),
     path('addemp', views.addemp),
-    path('auth_login', views.auth_login),
+    path('auth_login', views.auth_login,name='login.html'),
     path('user_login', views.user_login, name='user_login'),
     path('addproject', views.addproject),
     path('editempdetails/<int:id>', views.editempdetails),
@@ -38,5 +38,7 @@ urlpatterns = [
     path('update3/<int:id>', views.update3, name='show.html'),
     path('test', views.test),
     path('deleteEmp/<int:id>',views.deleteEmp),
-    path('deletePro/<int:id>',views.deletePro)
+    path('deletePro/<int:id>',views.deletePro),
+    path('auth_register', views.auth_register),
+    path('user_register', views.register, name='user_register'),
 ]

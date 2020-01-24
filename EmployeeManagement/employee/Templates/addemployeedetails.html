@@ -70,6 +70,11 @@
       background-color: #777;
     }
 
+
+
+
+
+
     </style>
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -244,11 +249,21 @@
                                     <div class="form-row">
                                         <div id="London" class="tabcontent">
                                             <p>Basic Information</p>
-                                            <div class="form-group col-md-12">
-                                                <label class=" col-form-label">Employee Id:</label>
-                                                <div>
-                                                    {{ form.emp_id }}
+                                            <div class="form-group col-md-9 form-row">
+                                                <div class="col">
+                                                    <label class=" col-form-label">Employee Id:</label>
+                                                    <div>
+                                                        {{ form.emp_id }}
+                                                    </div>
                                                 </div>
+                                                <div class="col">
+                                                    {%for error in form.emp_id.errors %}
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <h6 class="mt-1">{{error}}</h6>
+                                                    </div>
+                                                    {%endfor%}
+                                                </div>
+
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label class=" col-form-label">Employee First Name:</label>
@@ -431,6 +446,11 @@
 
 
 
+
+
+
+
+
 </script>
 <script>
        var flag = false;
@@ -439,6 +459,11 @@
         $("#ho").css("color", flag ? "white" : "springgreen");
         $("#mc").css("color", flag ? "springgreen" : "white");
     }, 1000);
+
+
+
+
+
 
 
 
@@ -461,6 +486,11 @@ function openCity(evt, cityName) {
 }
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
+
+
+
+
+
 
 
 
