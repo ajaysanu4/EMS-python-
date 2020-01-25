@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Employee Edit</title>
+    <title>Register</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -25,12 +25,6 @@
   color:#303f9f;
   background-color: #EAEAEA;
 }
-
-
-
-
-
-
 
 
 
@@ -67,10 +61,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Login</a>
+                            <a class="nav-link" href="/auth_login">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Register</a>
+                            <a class="nav-link" href="/auth_register">Register</a>
                         </li>
                     </ul>
 
@@ -81,58 +75,65 @@
         <div id="login">
             <div class="container">
                 <div id="login-row" class="row justify-content-center align-items-center">
-                    <div id="register-column" class="col-md-6">
-                        <div id="register-box" class="col-md-12">
-                            <div class="container">
-                                <form method="post" class="post-form " action="{% url 'user_register' %}">
-                                    {% csrf_token %}
-                                    <div class="col">
-                                        <label class=" col-form-label">Username:</label>
-                                        <div>
-                                            {{ form.username }}
-                                        </div>
+                    <div id="login-column" class="col-md-6">
+                        <div id="login-box" class="col-md-12">
+                            <form method="post" class="post-form " action="/user_register">
+                                {% csrf_token %}
+                                <h3 class="text-center  mt-2">Register</h3>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="username">Username:</label><br>
+                                        <input type="text" name="username" id="username" class="form-control">
                                     </div>
-                                    <div class="col mt-1">
-                                        {%for error in form.username.errors %}
-                                        <div class="alert alert-danger" role="alert">
-                                            <h6 class="mt-1">{{error}}</h6>
-                                        </div>
-                                        {%endfor%}
+                                </div>
+                                <div class="col mt-1">
+                                    {%for error in form.username.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        <h6 class="mt-1">{{error}}</h6>
                                     </div>
-                                    <div class="col">
-                                        <label class=" col-form-label">Password:</label>
-                                        <div>
-                                            {{ form.password }}
-                                        </div>
+                                    {%endfor%}
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="password">Password:</label><br>
+                                        <input type="password" name="password" id="password" class="form-control">
                                     </div>
-                                    <div class="col">
-                                        <label class=" col-form-label">Email:</label>
-                                        <div>
-                                            {{ form.email }}
-                                        </div>
+                                </div>
+                                <div class="col mt-1">
+                                    {%for error in form.password.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        <h6 class="mt-1">{{error}}</h6>
                                     </div>
-                                    <div class="col mt-1">
-                                        {%for error in form.email.errors %}
-                                        <div class="alert alert-danger" role="alert">
-                                            <h6 class="mt-1">{{error}}</h6>
-                                        </div>
-                                        {%endfor%}
+                                    {%endfor%}
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="email">Email:</label><br>
+                                        <input type="email" name="email" id="email" class="form-control">
                                     </div>
-                                    <div class="col mt-2">
-                                        <div>
-                                            <input type="submit" name="submit" value="Register">
-                                        </div>
+                                </div>
+                                <div class="col mt-1">
+                                    {%for error in form.email.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        <h6 class="mt-1">{{error}}</h6>
                                     </div>
-
-                                </form>
-                            </div>
+                                    {%endfor%}
+                                </div>
+                                <div class="col mt-2 mb-2">
+                                    <div class="form-group">
+                                        <input type="submit" name="submit" class="btn  btn-md" value="submit">
+                                    </div>
+                                </div>
+                                <div id="login-link" class="text-right mb-2">
+                                    <label style="color:black;font-weight:bold;">Already Registered? </label>
+                                    <a href="/auth_login">Login here</a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>
 </div>
@@ -167,14 +168,11 @@
 
 
 
-
-
-
-
-
-
-
-
+</script>
+<script>
+    setInterval(function() {
+        $(".alert").hide();
+    }, 5000);
 
 </script>
 

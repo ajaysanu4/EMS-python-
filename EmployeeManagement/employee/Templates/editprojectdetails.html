@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Edit Project</title>
+    <title>Project Edit</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -32,21 +32,13 @@
       border: none;
       outline: none;
       cursor: pointer;
-      padding: 7px 16px
+      padding: 7px 16px;
       font-size: 17px;
       width: 20%;
     }
+
     .tablink.active {
       background-color: darkblue;
-      color: white;
-      float: left;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      padding: 7px 16px
-      font-size: 17px;
-      width: 20%;
-        border: 1px solid #ccc;
     }
     /* Change background color of buttons on hover */
     .tab button:hover {
@@ -69,6 +61,15 @@
     .tablink:hover {
       background-color: #777;
     }
+
+    .triangle-right {
+        width: 0;
+        height: 0;
+        border-top: 25px solid transparent;
+        border-left: 50px solid #303f9f;
+        border-bottom: 25px solid transparent;
+}
+
 
     </style>
 
@@ -109,8 +110,8 @@
                 </a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
-                        <a href="{% url 'index.html' %}">Dashboard <i class="fa fa-chevron-right"
-                                                                      aria-hidden="true"></i></a>
+                        <a href="/dashboard">Dashboard <i class="fa fa-chevron-right"
+                                                          aria-hidden="true"></i></a>
                     </li>
                     <li>
                         <a href="#">Company Structure <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
@@ -220,12 +221,15 @@
                                         onclick="openCity(event, 'London')"><h6
                                         class="mt-2 ml-4"><i class="fa fa-address-card" aria-hidden="true"></i>&nbsp;&nbsp;Basic
                                 </h6></button>
+                                <div class="triangle-right"></div>
                                 <button class="tablinks tablink" onclick="openCity(event, 'Paris')"><h6
                                         class="mt-2 ml-4"><i class="fa fa-address-card" aria-hidden="true"></i>&nbsp;&nbsp;Client
                                 </h6></button>
+                                <div class="triangle-right"></div>
                                 <button class="tablinks tablink" onclick="openCity(event, 'Tokyo')"><h6
                                         class="mt-2 ml-4"><i class="fa fa-address-card" aria-hidden="true"></i>&nbsp;&nbsp;Budget
                                 </h6></button>
+                                <div class="triangle-right"></div>
                             </div>
                             <form method="POST" class="post-form" action="/update3/{{project.project_id}}">
                                 {% csrf_token %}
@@ -234,66 +238,133 @@
                                         <div class="form-row">
                                             <div id="London" class="tabcontent">
                                                 <p>Basic Information</p>
-                                                <div class="form-group col-md-12">
-                                                    <label class=" col-form-label">Project Id:</label>
-                                                    <div>
-                                                        <input type="number" name="project_id" id="id_pid"
-                                                               value="{{project.project_id}}" readonly="true">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label class=" col-form-label">Project Name:</label>
-                                                    <div>
-                                                        <input type="text" name="project_name" id="id_pname"
-                                                               value="{{project.project_name}}">
-                                                    </div>
-                                                    <label class=" col-form-label">Project Description:</label>
-                                                    <div>
-                                                        <textarea name="project_description"
-                                                                  id="id_pdescription">{{project.project_description}}</textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label class=" col-form-label">Project Company:</label>
-                                                    <div>
-                                                        <input type="text" name="project_company" id="id_pcompany"
-                                                               value="{{project.project_company}}">
-                                                    </div>
-                                                    <label class=" col-form-label">Project Owner:</label>
-                                                    <div>
-                                                        <input type="text" name="project_owner" id="id_owner"
-                                                               value="{{project.project_owner}}">
 
+                                                <div class="form-group col-md-6">
+                                                    <div class="col">
+                                                        <label for="project_id">Project Id:</label><br>
+                                                        <input type="number" name="project_id" id="project_id"
+                                                               value="{{project.project_id}}" readonly="true"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <div class="col">
+                                                        <label for="project_name">Project Name:</label><br>
+                                                        <input type="text" name="project_name" id="project_name"
+                                                               value="{{project.project_name}}"
+                                                               class="form-control">
+                                                    </div>
+                                                    <div class="col mt-1">
+                                                        {%for error in form.project_name.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="project_description">Project
+                                                            Description:</label><br>
+                                                        <input type="text" name="project_description"
+                                                               id="project_description"
+                                                               value="{{project.project_description}}"
+                                                               class="form-control">
+                                                    </div>
+                                                    <div class="col mt-1">
+                                                        {%for error in form.project_description.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <div class="col">
+                                                        <label for="project_company">Project
+                                                            Company:</label><br>
+                                                        <input type="text" name="project_company"
+                                                               id="project_company" value="{{project.project_company}}"
+                                                               class="form-control">
+                                                    </div>
+                                                    <div class="col mt-1">
+                                                        {%for error in form.project_company.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="project_owner">Project Owner:</label><br>
+                                                        <input type="text" name="project_owner"
+                                                               id="project_owner" value="{{project.project_owner}}"
+                                                               class="form-control">
+                                                    </div>
+                                                    <div class="col mt-1">
+                                                        {%for error in form.project_owner.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div id="Paris" class="tabcontent">
                                                 <p>Client Information</p>
                                                 <div class="form-group col-md-6">
-                                                    <label class="col-form-label">Project Category:</label>
-                                                    <div>
-                                                        <input type="text" name="project_category" id="id_category"
-                                                               value="{{project.project_category}}">
+                                                    <div class="col col-md-6">
+                                                        <label for="project_category">Project
+                                                            Category:</label><br>
+                                                        {{form.project_category}}
                                                     </div>
-                                                    <label class=" col-form-label">Project Status:</label>
-                                                    <div>
-                                                        <input type="text" name="project_status" id="id_status"
-                                                               value="{{project.project_status}}">
-
+                                                    <div class="col mt-1">
+                                                        {%for error in form.project_category.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="project_status">Project Status:</label><br>
+                                                        {{form.project_status}}
+                                                    </div>
+                                                    <div class="col mt-1">
+                                                        {%for error in form.project_status.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group col-md-6">
-                                                    <label class="col-form-label">Project Start Date:</label>
-                                                    <div>
-                                                        <input type="date" name="project_start_date" id="id_start_date"
-                                                               value="{{project.project_start_date}}">
+                                                    <div class="col">
+                                                        <label for="project_start_date">Project Start
+                                                            Date:</label><br>
+                                                        <input type="date" name="project_start_date"
+                                                               id="project_start_date"
+                                                               value="{{project.project_start_date}}"
+                                                               class="form-control">
                                                     </div>
-                                                    <label class="col-form-label">Project End Date:</label>
-                                                    <div>
-                                                        <input type="date" name="project_end_date" id="id_endate"
-                                                               value="{{project.project_end_date}}">
-
+                                                    <div class="col mt-1">
+                                                        {%for error in form.project_start_date.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="project_end_date">Project End
+                                                            Date:</label><br>
+                                                        <input type="date" name="project_end_date"
+                                                               id="project_end_date"
+                                                               value="{{project.project_end_date}}"
+                                                               class="form-control">
+                                                    </div>
+                                                    <div class="col mt-1">
+                                                        {%for error in form.project_end_date.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
                                                     </div>
                                                 </div>
 
@@ -301,28 +372,52 @@
                                             <div id="Tokyo" class="tabcontent">
                                                 <p>Budget Information</p>
                                                 <div class="form-group col-md-6">
-                                                    <label class=" col-form-label">Project Budget:</label>
-                                                    <div>
-                                                        <input type="number" name="project_budget" id="id_budget"
-                                                               value="{{project.project_budget}}">
-
+                                                    <div class="col">
+                                                        <label for="project_budget">Project Budget:</label><br>
+                                                        <input type="number" name="project_budget"
+                                                               id="project_budget" value="{{project.project_budget}}"
+                                                               class="form-control">
                                                     </div>
-                                                    <label class=" col-form-label">Project Summary:</label>
-                                                    <div>
-                                                        <input type="text" name="project_summary" id="id_summary"
-                                                               value="{{project.project_summary}}">$
-
+                                                    <div class="col mt-1">
+                                                        {%for error in form.project_budget.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="project_summary">Project
+                                                            Summary:</label><br>
+                                                        <input type="text" name="project_summary"
+                                                               id="project_summary" value="{{project.project_summary}}"
+                                                               class="form-control">
+                                                    </div>
+                                                    <div class="col mt-1">
+                                                        {%for error in form.project_summary.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group col-md-6">
-                                                    <label class=" col-form-label">Project Record:</label>
-                                                    <div>
-                                                        <textarea name="project_record" id="id_record">{{project.project_record}}</textarea>
-
+                                                    <div class="col">
+                                                        <label for="project_record">Project Record:</label><br>
+                                                        <input type="text" name="project_record"
+                                                               id="project_record" value="{{project.project_record}}"
+                                                               class="form-control">
+                                                    </div>
+                                                    <div class="col mt-1">
+                                                        {%for error in form.project_record.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="form-group col-md-6">
                                                 <div>
                                                     <button type="submit" class="btn btn-primary mt-3">Update
@@ -363,27 +458,13 @@
         });
          $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
-                $('#hide').toggleClass('active');
+                $('#hide,.tablink').toggleClass('active');
 
             });
         });
 
-
-
-
-
-
 </script>
-<script>
-       var flag = false;
-    setInterval(function() {
-        flag = !flag;
-        $("#ho").css("color", flag ? "white" : "springgreen");
-        $("#mc").css("color", flag ? "springgreen" : "white");
-    }, 1000);
 
-
-</script>
 <script>
 function openCity(evt, cityName) {
   var i, tabcontent, tablinks;
@@ -403,6 +484,12 @@ document.getElementById("defaultOpen").click();
 
 
 
+
+</script>
+<script>
+    setInterval(function() {
+        $(".alert").hide();
+    }, 5000);
 
 
 </script>

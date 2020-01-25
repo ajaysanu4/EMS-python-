@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Employee List</title>
+    <title>Employees</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -30,6 +30,11 @@ width: 1430px;
 .navbar{
 padding-bottom: 5px;
 }
+
+
+
+
+
     </style>
 
 </head>
@@ -61,14 +66,15 @@ padding-bottom: 5px;
                 </a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
-                        <a href="{% url 'index.html' %}">Dashboard <i class="fa fa-chevron-right"
+                        <a href="/dashboard">Dashboard <i class="fa fa-chevron-right"
                                                                       aria-hidden="true"></i></a>
                     </li>
                     <li>
                         <a href="#">Company Structure <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                     </li>
                     <li>
-                        <a href="{% url 'showprojects.html' %}">Projects <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                        <a href="/showprojects">Projects <i class="fa fa-chevron-right"
+                                                                            aria-hidden="true"></i></a>
                     </li>
                     <li>
                         <a href="#">Personal Details <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
@@ -162,6 +168,13 @@ padding-bottom: 5px;
                 <h4 class="pt-3 pl-4" style="color:white;">Employees</h4>
             </div>
         </div>
+        <div>
+            {%if message %}
+            <div class="alert alert-success" role="alert">
+                <p class="mt-1">{{message}}</p>
+            </div>
+            {% endif %}
+        </div>
         <div class="jumbotron">
             <div id="widthexpand ">
                 <a class="btn btn-primary btn-md buttons-html5 mb-2" href="/add" role="button"><span>Add Employee</span></a>
@@ -234,6 +247,7 @@ padding-bottom: 5px;
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -307,6 +321,11 @@ padding-bottom: 5px;
         "pagingType": "full_numbers"
     } );
 
+
+
+
+
+
 </script>
 
 <script>
@@ -320,14 +339,13 @@ else{
 alert("Your account is not deleted!");
 }
 }
+
 </script>
+
 <script>
-       var flag = false;
     setInterval(function() {
-        flag = !flag;
-        $("#ho").css("color", flag ? "white" : "springgreen");
-         $("#mc").css("color", flag ? "springgreen" : "white");
-    }, 1000);
+        $(".alert").hide();
+    }, 5000);
 </script>
 </html>
 

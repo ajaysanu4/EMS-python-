@@ -11,6 +11,8 @@
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- Our Custom CSS -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css"/>
@@ -70,11 +72,13 @@
       background-color: #777;
     }
 
-
-
-
-
-
+    .triangle-right {
+	width: 0;
+	height: 0;
+	border-top: 25px solid transparent;
+	border-left: 50px solid #303f9f;
+	border-bottom: 25px solid transparent;
+    }
     </style>
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -83,18 +87,27 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
             integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
             crossorigin="anonymous"></script>
-    {% csrf_token %}
-</head>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+            integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+            crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+            integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"
+            integrity="sha256-VBLiveTKyUZMEzJd6z2mhfxIqz3ZATCuVMawPZGzIfA=" crossorigin="anonymous"></script>
+
+    <!-- Tempus Dominus Bootstrap 4 -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css"
+          integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"
+            integrity="sha256-z0oKYg6xiLq3yJGsp/LsY9XykbweQlHl42jHv2XTBz4=" crossorigin="anonymous"></script>
 
 
-<!-- Font Awesome JS -->
-<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
-        integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
-        crossorigin="anonymous"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
-        integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
-        crossorigin="anonymous"></script>
-{% csrf_token %}
 </head>
 
 <body>
@@ -124,14 +137,14 @@
                 </a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
-                        <a href="{% url 'index.html' %}">Dashboard <i class="fa fa-chevron-right"
-                                                                      aria-hidden="true"></i></a>
+                        <a href="/dashboard">Dashboard <i class="fa fa-chevron-right"
+                                                          aria-hidden="true"></i></a>
                     </li>
                     <li>
                         <a href="#">Company Structure <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                     </li>
                     <li>
-                        <a href="#">Projects <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                        <a href="/showprojects">Projects <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                     </li>
                     <li>
                         <a href="#">Personal Details <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
@@ -235,176 +248,341 @@
                                     onclick="openCity(event, 'London')"><h6
                                     class="mt-2 ml-4"><i class="fa fa-address-card" aria-hidden="true"></i>&nbsp;&nbsp;Personal
                             </h6></button>
+                            <div class="triangle-right"></div>
                             <button class="tablinks tablink" onclick="openCity(event, 'Paris')"><h6
                                     class="mt-2 ml-4"><i class="fa fa-address-card" aria-hidden="true"></i>&nbsp;&nbsp;Job
                             </h6></button>
+                            <div class="triangle-right"></div>
                             <button class="tablinks tablink" onclick="openCity(event, 'Tokyo')"><h6
                                     class="mt-2 ml-4"><i class="fa fa-address-card" aria-hidden="true"></i>&nbsp;&nbsp;Skills
                             </h6></button>
+                            <div class="triangle-right"></div>
                         </div>
-                        <form method="POST" class="post-form" action="/addemp">
+                        <form method="POST" name="addemp_form" id="addemp" class="post-form" action="/addemp">
                             {% csrf_token %}
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div id="London" class="tabcontent">
                                             <p>Basic Information</p>
-                                            <div class="form-group col-md-9 form-row">
+                                            <div class="form-group col-md-6">
                                                 <div class="col">
-                                                    <label class=" col-form-label">Employee Id:</label>
-                                                    <div>
-                                                        {{ form.emp_id }}
-                                                    </div>
+                                                    <label for="emp_id">Employee Id:</label><br>
+                                                    <input type="number" name="emp_id" id="emp_id"
+                                                           class="form-control">
                                                 </div>
-                                                <div class="col">
+                                                <div class="col mt-1">
                                                     {%for error in form.emp_id.errors %}
                                                     <div class="alert alert-danger" role="alert">
-                                                        <h6 class="mt-1">{{error}}</h6>
+                                                        <p class="mt-1">{{error}}</p>
                                                     </div>
                                                     {%endfor%}
                                                 </div>
-
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label class=" col-form-label">Employee First Name:</label>
-                                                <div>
-                                                    {{ form.emp_first_name }}
+                                                <div class="col">
+                                                    <label for="emp_first_name">Employee First Name:</label><br>
+                                                    <input type="text" name="emp_first_name" id="emp_first_name"
+                                                           class="form-control">
                                                 </div>
-                                                <label class=" col-form-label">Employee Last Name:</label>
-                                                <div>
-                                                    {{ form.emp_last_name }}
+                                                <div class="col mt-1">
+                                                    {%for error in form.emp_first_name.errors %}
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <p class="mt-1">{{error}}</p>
+                                                    </div>
+                                                    {%endfor%}
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label class=" col-form-label">Employee Gender:</label>
-                                                <div>
-                                                    {{ form.emp_gender }}
+                                                <div class="col">
+                                                    <label for="emp_last_name">Employee Last Name:</label><br>
+                                                    <input type="text" name="emp_last_name" id="emp_last_name"
+                                                           class="form-control">
                                                 </div>
-                                                <label class=" col-form-label">Employee Email:</label>
-                                                <div>
-                                                    {{ form.emp_email }}
-
+                                                <div class="col mt-1">
+                                                    {%for error in form.emp_last_name.errors %}
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <p class="mt-1">{{error}}</p>
+                                                    </div>
+                                                    {%endfor%}
                                                 </div>
                                             </div>
-
                                             <div class="form-group col-md-6">
-                                                <label class=" col-form-label">Employee Date Of
-                                                    Birth:</label>
-                                                <div>
-                                                    {{ form.emp_dob }}
-
+                                                <div class="col">
+                                                    <label for="emp_gender">Employee Gender:</label><br>
+                                                    {{form.emp_gender}}
                                                 </div>
-                                                <label class="col-form-label">Employee Marital
-                                                    Status:</label>
-                                                <div>
-                                                    {{ form.emp_marital_status }}
+                                                <div class="col mt-1">
+                                                    {%for error in form.emp_gender.errors %}
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <p class="mt-1">{{error}}</p>
+                                                    </div>
+                                                    {%endfor%}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <div class="col">
+                                                    <label for="emp_email">Employee Email:</label><br>
+                                                    <input type="email" name="emp_email" id="emp_email"
+                                                           class="form-control">
+                                                </div>
+                                                <div class="col mt-1">
+                                                    {%for error in form.emp_email.errors %}
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <p class="mt-1">{{error}}</p>
+                                                    </div>
+                                                    {%endfor%}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <div class="col">
+                                                    <label for="emp_dob">Employee Date of Birth:</label><br>
+                                                    <input type="date" name="emp_dob" id="emp_dob"
+                                                           class="form-control">
+                                                </div>
+                                                <div class="col mt-1">
+                                                    {%for error in form.emp_dob.errors %}
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <p class="mt-1">{{error}}</p>
+                                                    </div>
+                                                    {%endfor%}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <div class="col">
+                                                    <label for="emp_marital_status">Employee Marital Status:</label><br>
+                                                    {{form.emp_marital_status}}
+                                                </div>
+                                                <div class="col mt-1">
+                                                    {%for error in form.emp_marital_status.errors %}
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <p class="mt-1">{{error}}</p>
+                                                    </div>
+                                                    {%endfor%}
                                                 </div>
                                             </div>
                                         </div>
                                         <div id="Paris" class="tabcontent">
                                             <p>Job Information</p>
                                             <div class="form-group col-md-6">
-                                                <label class="col-form-label">Employee Home Number:</label>
-                                                <div>
-                                                    {{ form.emp_home_number }}
+                                                <div class="col">
+                                                    <label for="emp_home_number">Employee Home Number:</label><br>
+                                                    <input type="number" name="emp_home_number" id="emp_home_number"
+                                                           class="form-control">
                                                 </div>
-                                                <label class=" col-form-label">Employee Personal
-                                                    Number:</label>
-                                                <div>
-                                                    {{ form.emp_personal_number }}
-
+                                                <div class="col mt-1">
+                                                    {%for error in form.emp_home_number.errors %}
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <p class="mt-1">{{error}}</p>
+                                                    </div>
+                                                    {%endfor%}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <div class="col">
+                                                    <label for="emp_personal_number">Employee Personal
+                                                        Number:</label><br>
+                                                    <input type="number" name="emp_personal_number"
+                                                           id="emp_personal_number"
+                                                           class="form-control">
+                                                </div>
+                                                <div class="col mt-1">
+                                                    {%for error in form.emp_personal_number.errors %}
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <p class="mt-1">{{error}}</p>
+                                                    </div>
+                                                    {%endfor%}
                                                 </div>
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label class="col-form-label">Employee Hire Date:</label>
-                                                <div>
-                                                    {{ form.emp_hire_date }}
+                                                <div class="col">
+                                                    <label for="emp_hire_date">Employee Hire Date:</label>
+                                                    <input type="date" name="emp_hire_date" id="emp_hire_date"
+                                                           class="form-control">
                                                 </div>
-                                                <label class="col-form-label">Employee Designation:</label>
-                                                <div>
+                                                <div class="col mt-1">
+                                                    {%for error in form.emp_hire_date.errors %}
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <h6 class="mt-1">{{error}}</h6>
+                                                    </div>
+                                                    {%endfor%}
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <div class="col">
+                                                    <label class="col-form-label">Employee Designation:</label>
                                                     {{ form.emp_designation }}
+                                                </div>
 
+                                                <div class="col mt-1">
+                                                    {%for error in form.emp_designation.errors %}
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <h6 class="mt-1">{{error}}</h6>
+                                                    </div>
+                                                    {%endfor%}
                                                 </div>
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label class="col-form-label">Employee Type:</label>
-                                                <div>
-                                                    {{ form.emp_type }}
-
-
+                                                <div class="col">
+                                                    <label for="emp_type">Employee Type:</label><br>
+                                                    {{form.emp_type}}
                                                 </div>
-                                                <label class="col-form-label">Employee Address:</label>
-                                                <div>
-                                                    {{ form.emp_address }}
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="Tokyo" class="tabcontent">
-                                            <p>Skills Information</p>
-                                            <div class="form-group col-md-6">
-                                                <label class=" col-form-label">Employee City:</label>
-                                                <div>
-                                                    {{ form.emp_city }}
-
-                                                </div>
-                                                <label class=" col-form-label">Employee State:</label>
-                                                <div>
-                                                    {{ form.emp_state }}
-
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group col-md-6">
-                                                <label class=" col-form-label">Employee Postal Code:</label>
-                                                <div>
-                                                    {{ form.emp_postal_code }}
-
-                                                </div>
-                                                <label class="col-form-label">Employee Country:</label>
-                                                <div>
-                                                    {{ form.emp_country }}
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group col-md-6">
-                                                <label class=" col-form-label">Employee Notes:</label>
-                                                <div>
-                                                    {{ form.emp_notes }}
-
+                                                <div class="col mt-1">
+                                                    {%for error in form.emp_type.errors %}
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <p class="mt-1">{{error}}</p>
+                                                    </div>
+                                                    {%endfor%}
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label class="col-form-label">Employee Work
-                                                    Location:</label>
-                                                <div>
-                                                    {{ form.emp_work_location }}
+                                                <div class="col">
+                                                    <label for="emp_address">Employee Address:</label>
+                                                    <textarea name="emp_address" id="emp_address"
+                                                              class="form-control"></textarea>
                                                 </div>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="col-form-label">Employee Manager:</label>
-                                                <div>
-                                                    {{ form.emp_manager_id }}
+
+                                                <div class="col mt-1">
+                                                    {%for error in form.emp_address.errors %}
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <h6 class="mt-1">{{error}}</h6>
+                                                    </div>
+                                                    {%endfor%}
                                                 </div>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="col-form-label">Employee Project:</label>
-                                                <div>
-                                                    {{ form.emp_project_id }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <div>
-                                                <button type="submit" class="btn btn-primary mt-3">Submit
-                                                </button>
                                             </div>
                                         </div>
 
                                     </div>
+                                    <div id="Tokyo" class="tabcontent">
+                                        <p>Skills Information</p>
+                                        <div class="form-group col-md-6">
+                                            <div class="col">
+                                                <label for="emp_city">Employee City:</label>
+                                                <input type="text" name="emp_city" id="emp_city"
+                                                       class="form-control">
+                                            </div>
+
+                                            <div class="col mt-1">
+                                                {%for error in form.emp_city.errors %}
+                                                <div class="alert alert-danger" role="alert">
+                                                    <h6 class="mt-1">{{error}}</h6>
+                                                </div>
+                                                {%endfor%}
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="col">
+                                                <label for="emp_state">Employee State:</label>
+                                                <input type="text" name="emp_state" id="emp_state"
+                                                       class="form-control">
+                                            </div>
+
+                                            <div class="col">
+                                                {%for error in form.emp_state.errors %}
+                                                <div class="alert alert-danger" role="alert">
+                                                    <h6 class="mt-1">{{error}}</h6>
+                                                </div>
+                                                {%endfor%}
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="col">
+                                                <label for="emp_postal_code">Employee Postal Code:</label>
+                                                <input type="number" name="emp_postal_code" id="emp_postal_code"
+                                                       class="form-control">
+                                            </div>
+
+                                            <div class="col mt-1">
+                                                {%for error in form.emp_postal_code.errors %}
+                                                <div class="alert alert-danger" role="alert">
+                                                    <h6 class="mt-1">{{error}}</h6>
+                                                </div>
+                                                {%endfor%}
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="col">
+                                                <label for="emp_postal_code">Employee Country:</label>
+                                                {{ form.emp_country }}
+                                            </div>
+
+                                            <div class="col mt-1">
+                                                {%for error in form.emp_country.errors %}
+                                                <div class="alert alert-danger" role="alert">
+                                                    <h6 class="mt-1">{{error}}</h6>
+                                                </div>
+                                                {%endfor%}
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="col">
+                                                <label for="emp_notes">Employee Notes:</label>
+                                                <input type="text" name="emp_notes" id="emp_notes"
+                                                       class="form-control">
+                                            </div>
+                                            <div class="col">
+                                                {%for error in form.emp_notes.errors %}
+                                                <div class="alert alert-danger" role="alert">
+                                                    <h6 class="mt-1">{{error}}</h6>
+                                                </div>
+                                                {%endfor%}
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="col">
+                                                <label for="emp_work_location">Employee Work Location:</label>
+                                                <input type="text" name="emp_work_location" id="emp_work_location"
+                                                       class="form-control">
+                                            </div>
+                                            <div class="col mt-1">
+                                                {%for error in form.emp_work_location.errors %}
+                                                <div class="alert alert-danger" role="alert">
+                                                    <h6 class="mt-1">{{error}}</h6>
+                                                </div>
+                                                {%endfor%}
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="col">
+                                                <label for="emp_manager_id">Employee Manager:</label>
+                                                <div>
+                                                    {{ form.emp_manager_id }}
+                                                </div>
+                                            </div>
+                                            <div class="col mt-1">
+                                                {%for error in form.emp_manager_id.errors %}
+                                                <div class="alert alert-danger" role="alert">
+                                                    <h6 class="mt-1">{{error}}</h6>
+                                                </div>
+                                                {%endfor%}
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="col ">
+                                                <label for="emp_project_id">Employee Project:</label>
+                                                <div>
+                                                    {{ form.emp_project_id }}
+                                                </div>
+                                            </div>
+                                            <div class="col mt-1">
+                                                {%for error in form.emp_project_id.errors %}
+                                                <div class="alert alert-danger" role="alert">
+                                                    <h6 class="mt-1">{{error}}</h6>
+                                                </div>
+                                                {%endfor%}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <div>
+                                            <button type="submit" class="btn btn-primary mt-3">Submit
+                                            </button>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </form>
@@ -440,35 +618,6 @@
 
             });
         });
-
-
-
-
-
-
-
-
-
-
-
-</script>
-<script>
-       var flag = false;
-    setInterval(function() {
-        flag = !flag;
-        $("#ho").css("color", flag ? "white" : "springgreen");
-        $("#mc").css("color", flag ? "springgreen" : "white");
-    }, 1000);
-
-
-
-
-
-
-
-
-
-
 </script>
 <script>
 function openCity(evt, cityName) {
@@ -488,14 +637,19 @@ function openCity(evt, cityName) {
 document.getElementById("defaultOpen").click();
 
 
-
-
-
-
-
-
-
+</script>
+<script>
+$(document).ready(function(){
+    $('.datepicker').datepicker();
+});
 
 
 </script>
+<script>
+    setInterval(function() {
+        $(".alert").hide();
+    }, 5000);
+
+</script>
+
 </html>

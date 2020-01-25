@@ -167,10 +167,12 @@ span {
     background-color: darkblue;
 }
 
-.form-control {
-    border: 1px solid black;
-    border-radius: 0px;
-}
+select{
+        width: 342px;
+        height: 40px;
+        border: 1px solid gainsboro;
+        border-radius: 5px;
+    }
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */

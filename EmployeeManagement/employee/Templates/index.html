@@ -41,7 +41,7 @@
                     <span>&nbsp;&nbsp;<img src="{% static 'images/profile.jpg' %}" style="height:65px;width:65px;"
                                            alt="My profile"></span>
                         <span id="hide">
-                            <h4>&nbsp;&nbsp;&nbsp;{{user.username}}</h4>
+                            <h4>&nbsp;&nbsp;&nbsp;&nbsp;{{user.username}}</h4>
                         <h6>&nbsp;&nbsp;<i id="ho" class="fa fa-circle" aria-hidden="true"></i>&nbsp;Logged in</h6>
                         </span>
                     </div>
@@ -52,14 +52,14 @@
                 </a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
-                        <a href="{% url 'index.html' %}">Dashboard <i class="fa fa-chevron-right"
+                        <a href="/dashboard">Dashboard <i class="fa fa-chevron-right"
                                                                       aria-hidden="true"></i></a>
                     </li>
                     <li>
                         <a href="#">Company Structure <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                     </li>
                     <li>
-                        <a href="{% url 'showprojects.html' %}">Projects <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                        <a href="/showprojects.html">Projects <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
                     </li>
                     <li>
                         <a href="#">Personal Details <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
@@ -202,25 +202,6 @@
 
             });
         });
-   $(document).ready(function() {
- setInterval(function() {
-    $('.blink').animate( { color: 'red' }, 300)
-.animate( { color: 'green' }, 300);
-    }, 1000);
 
- });
-
-
-
-
-</script>
-
-<script>
-       var flag = false;
-    setInterval(function() {
-        flag = !flag;
-        $("#ho").css("color", flag ? "white" : "springgreen");
-        $("#mc").css("color", flag ? "springgreen" : "white");
-    }, 1000);
 </script>
 </html>

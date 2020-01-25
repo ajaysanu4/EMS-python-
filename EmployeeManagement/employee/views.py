@@ -14,9 +14,7 @@ db_logger = logging.getLogger('db')
 @login_required(login_url='/auth_login')
 def dashboard(request):
     try:
-        employees = Employee.objects.all()
-        user = User.objects.get(id=request.session.get('id'))
-        return render(request, "index.html", {'employees': employees, 'user': user})
+        return render(request, "index.html")
     except Exception as e:
         db_logger.exception(e)
         return redirect("/error")
@@ -70,8 +68,7 @@ def editempdetails(request, id):
         employee = Employee.objects.get(emp_id=id)
         form = EmployeeForm(request.POST, instance=employee)
         form1 = EmployeeForm()
-        return render(request, "editempdetails.html",
-                      {'employee': employee, 'form': form, 'form1': form1})
+        return render(request, "editempdetails.html", {'employee': employee, 'form': form, 'form1': form1})
     except Exception as e:
         db_logger.exception(e)
         return redirect("/error")
@@ -91,17 +88,25 @@ def editprojectdetails(request, id):
 @login_required(login_url='/auth_login')
 def update(request, id):
     try:
-        employee = Employee.objects.get(emp_id=id)
-        form = EmployeeForm(request.POST, instance=employee)
-        if request.method == 'POST':
+        if request.method == "POST":
+            employee = Employee.objects.get(emp_id=id)
+            form = EmployeeForm(request.POST, instance=employee)
             print(form.is_valid())
             if form.is_valid():
                 save_data = form.save(commit=False)
                 save_data.user_id_id = request.session.get('id')
                 save_data.save()
-                return redirect("/show")
-        employee = Employee.objects.get(emp_id=id)
-        return render(request, "editempdetails.html", {'employee': employee})
+                message = "Data Updated Successfully"
+                employees = Employee.objects.filter(user_id_id=request.session.get('id'))
+                return render(request, "show.html", {'employees': employees, 'message': message})
+            else:
+                employee = Employee.objects.get(emp_id=id)
+            return render(request, "editempdetails.html", {'employee': employee, 'form': form})
+
+        else:
+            employee = Employee.objects.get(emp_id=id)
+            form = EmployeeForm()
+        return render(request, "editempdetails.html", {'employee': employee, 'form': form})
     except Exception as e:
         db_logger.exception(e)
         return redirect("/error")
@@ -110,17 +115,26 @@ def update(request, id):
 @login_required(login_url='/auth_login')
 def update3(request, id):
     try:
-        project = ProjectDetails.objects.get(project_id=id)
-        employees = Employee.objects.all()
-        form = ProjectForm(request.POST, instance=project)
-        if request.method == 'POST':
+        if request.method == "POST":
+            project = ProjectDetails.objects.get(project_id=id)
+            form = ProjectForm(request.POST, instance=project)
             print(form.is_valid())
             if form.is_valid():
                 save_data = form.save(commit=False)
                 save_data.user_id_id = request.session.get('id')
                 save_data.save()
-                return redirect("/showprojects")
-        return render(request, "editprojectdetails.html", {'employees': employees, 'project': project})
+                message = "Data Updated Successfully"
+                projects = ProjectDetails.objects.filter(user_id_id=request.session.get('id'))
+                return render(request, "showprojects.html", {'projects': projects, 'message': message})
+            else:
+                employee = Employee.objects.get(emp_id=id)
+                project = ProjectDetails.objects.get(project_id=id)
+                return render(request, "editprojectdetails.html",
+                              {'employee': employee, 'project': project, 'form': form})
+        else:
+            employee = Employee.objects.get(emp_id=id)
+            form = EmployeeForm()
+        return render(request, "editprojectdetails.html", {'employee': employee, 'form': form})
     except Exception as e:
         db_logger.exception(e)
         return redirect("/error")
@@ -136,10 +150,14 @@ def addemp(request):
                 save_data = form.save(commit=False)
                 save_data.user_id_id = request.session.get('id')
                 save_data.save()
-                return redirect("/show")
+                message = "Employee Added Successfully"
+                employees = Employee.objects.filter(user_id_id=request.session.get('id'))
+                return render(request, "show.html", {'employees': employees, 'message': message})
+            else:
+                return render(request, 'addemployeedetails.html', {'form': form})
         else:
             form = EmployeeForm()
-        return render(request, 'addemployeedetails.html', {'form': form})
+        # return render(request, 'addemployeedetails.html', {'form': form})
     except Exception as e:
         db_logger.exception(e)
         return redirect("/error")
@@ -155,7 +173,11 @@ def addproject(request):
                 save_data = form.save(commit=False)
                 save_data.user_id_id = request.session.get('id')
                 save_data.save()
-                return redirect("/showprojects")
+                message = "Project Added Successfully"
+                projects = ProjectDetails.objects.filter(user_id_id=request.session.get('id'))
+                return render(request, "showprojects.html", {'projects': projects, 'message': message})
+            else:
+                return render(request, 'addprojectdetails.html', {'form': form})
         else:
             form = ProjectForm()
         return render(request, 'addprojectdetails.html', {'form': form})
@@ -173,7 +195,6 @@ def auth_login(request):
     return render(request, 'login.html', {'form': form})
 
 
-@login_required(login_url='/auth_login')
 def error(request):
     try:
         return render(request, "error.html")
@@ -184,26 +205,28 @@ def error(request):
 
 def user_login(request):
     try:
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-            user = authenticate(username=username, password=password)
-            if user:
-                if user.is_active:
-                    login(request, user)
-                    variable = User.objects.filter(username=username).values('id')
-                    for a in variable:
-                        request.session['id'] = a['id']
-                    print(request.session.get('id'))
-                    return redirect("/dashboard")
+        if request.method == "POST":
+            form = UserForm(request.POST)
+            print(form.is_valid())
+            if form.is_valid():
+                username = request.POST.get('username')
+                password = request.POST.get('password')
+                user = authenticate(username=username, password=password)
+                if user:
+                    if user.is_active:
+                        login(request, user)
+                        variable = User.objects.filter(username=username).values('id')
+                        for a in variable:
+                            request.session['id'] = a['id']
+                        return redirect("/dashboard")
                 else:
-                    return HttpResponse("Your account was inactive.")
+                    message = "Unable to login. Either username or password is incorrect."
+                    return render(request, 'login.html', {'form': form, 'message': message})
             else:
-                print("Someone tried to login and failed.")
-                print("They used username: {} and password: {}".format(username, password))
-                return HttpResponse("Invalid login details given")
+                return render(request, 'login.html', {'form': form})
         else:
-            return render(request, 'login.html', {})
+            form = UserForm()
+        return render(request, 'login.html', {'form': form})
     except Exception as e:
         db_logger.exception(e)
         return redirect("/error")
@@ -242,12 +265,8 @@ def deletePro(request, id):
 
 
 def auth_register(request):
-    try:
-        form = UserRegistrationForm()
-        return render(request, 'register.html', {'form': form})
-    except Exception as e:
-        db_logger.exception(e)
-        return redirect("/error")
+    form = UserRegistrationForm()
+    return render(request, 'register.html', {'form': form})
 
 
 def register(request):
@@ -258,6 +277,8 @@ def register(request):
             user.set_password(user.password)
             user.save();
             return redirect("/dashboard")
+        else:
+            return render(request, 'register.html', {'form': form})
     else:
         form = UserRegistrationForm()
     return render(request, 'register.html', {'form': form})

@@ -125,7 +125,7 @@ DATABASES = {
         'ENGINE': 'sql_server.pyodbc',
         'HOST': 'LOCALHOST',
         'PORT': '',
-        'NAME': 'DjangoDatabase1',
+        'NAME': 'DjangoDatabase',
         'USER': '',
         'PASSWORD': '',
         'OPTIONS': {
