@@ -25,6 +25,8 @@
     color: inherit;
 }
 
+
+
     </style>
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -73,6 +75,13 @@
             <h3>Error...!!</h3>
             <h5 style="color:red;font-weight:bold">Some Error occured Please Try again Later.....</h5>
         </div>
+        <div class="form-group col-md-6">
+            <div class="col mt-1">
+                <div class="alert alert-dwarning" role="alert">
+                    <p class="mt-1">{{errormessage}}</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
@@ -92,6 +101,8 @@
     setInterval(function() {
         $(".alert").hide();
     }, 10000);
+
+
 
 </script>
 </html>

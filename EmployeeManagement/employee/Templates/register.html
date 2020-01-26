@@ -28,7 +28,21 @@
         #login-box{
         box-shadow: 1px 1px 30px rgba(48, 63, 159, 0.5);
         }
-
+      .form-control {
+             width: 480px;
+        }
+     input{
+         width: 480px;
+         height: 40px;
+         border: 1px solid gainsboro;
+         border-radius: 5px;
+     }
+      select{
+            width: 480px;
+            height: 40px;
+            border: 1px solid gainsboro;
+            border-radius: 5px;
+        }
     </style>
 
     <!-- Font Awesome JS -->
@@ -85,7 +99,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="username">Username:</label><br>
-                                        <input type="text" name="username" id="username" class="form-control">
+                                        {{form.username}}
                                     </div>
                                 </div>
                                 <div class="col mt-1">
@@ -98,7 +112,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="password">Password:</label><br>
-                                        <input type="password" name="password" id="password" class="form-control">
+                                        {{form.password}}
                                     </div>
                                 </div>
                                 <div class="col mt-1">
@@ -110,8 +124,21 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
+                                        <label for="confirm_password">Confirm Password:</label><br>
+                                        {{form.confirm_password}}
+                                    </div>
+                                </div>
+                                <div class="col mt-1">
+                                    {%for error in form.confirm_password.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        <h6 class="mt-1">{{error}}</h6>
+                                    </div>
+                                    {%endfor%}
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
                                         <label for="email">Email:</label><br>
-                                        <input type="email" name="email" id="email" class="form-control">
+                                        {{form.email}}
                                     </div>
                                 </div>
                                 <div class="col mt-1">

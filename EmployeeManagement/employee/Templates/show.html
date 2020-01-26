@@ -30,6 +30,10 @@ p {
     line-height: 1.2;
     color: inherit;
 }
+    .card{
+    border-radius: 0rem;
+        box-shadow: 0px 0 7px 0px rgba(0, 0, 0, 0.3), 0 0px 0px 0 rgba(0, 0, 0, 0.2);
+    }
 
     </style>
     <!-- Font Awesome JS -->
@@ -50,7 +54,7 @@ p {
         <ul class="list-unstyled components">
             <li class="active">
                 <div>
-                     <div id="profile_photo">
+                    <div id="profile_photo">
                     <span>&nbsp;&nbsp;<img src="{% static 'images/profile.jpg' %}" style="height:65px;width:65px;"
                                            alt="My profile"></span>&nbsp;&nbsp;&nbsp;
                         <span id="hide">
@@ -234,9 +238,9 @@ p {
                                     <a href="/editempdetails/{{ employee.emp_id }}" class="btn primary"><i
                                             class="fa fa-info"
                                             aria-hidden="true"></i></a>
-                                    <a href="/deleteEmp/{{ employee.emp_id }}" Onclick="return ConfirmDelete()"
+                                    <button  Onclick="return ConfirmDelete({{ employee.emp_id }})"
                                        class="btn primary"><i
-                                            class="fa fa-trash" aria-hidden="true"></i></a>
+                                            class="fa fa-trash" aria-hidden="true"></i></button>
                                 </td>
                             </tr>
                             {% endfor %}
@@ -250,15 +254,15 @@ p {
     </div>
 </div>
 </body>
-&lt;!&ndash; jQuery CDN - Slim version (=without AJAX) &ndash;&gt;
+<!-- jQuery CDN - Slim version (=without AJAX) -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-&lt;!&ndash; Popper.JS &ndash;&gt;
+<!-- Popper.JS &ndash-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
         integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
         crossorigin="anonymous"></script>
-&lt;!&ndash; Bootstrap JS &ndash;&gt;
+<!-- Bootstrap JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
@@ -281,7 +285,7 @@ p {
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"
         crossorigin="anonymous"></script>
 
-&lt;!&ndash; Font Awesome JS &ndash;&gt;
+<!-- Font Awesome JS -->
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
         integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
         crossorigin="anonymous"></script>
@@ -320,27 +324,29 @@ p {
     } );
 
 
+
 </script>
 
 <script>
-function ConfirmDelete(){
- var userselection = confirm("Are you sure you want to close this account permanently?");
+function ConfirmDelete(emp_id){
+var userselection = confirm("Are you sure you want to Delete this Employee permanently?");
 if (userselection == true)
 {
-alert("Your Account deleted!");
+alert("Employee deleted Successfully!");
+console.log("/deleteEmp/"+emp_id);
+window.location.href = "/deleteEmp/"+emp_id;
 }
 else{
-alert("Your account is not deleted!");
+alert("Employee is not deleted!");
 }
 }
-
-
 </script>
 
 <script>
     setInterval(function() {
         $(".alert").hide();
     }, 10000);
+
 
 </script>
 </html>

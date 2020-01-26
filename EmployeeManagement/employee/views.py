@@ -67,8 +67,7 @@ def editempdetails(request, id):
     try:
         employee = Employee.objects.get(emp_id=id)
         form = EmployeeForm(request.POST, instance=employee)
-        form1 = EmployeeForm()
-        return render(request, "editempdetails.html", {'employee': employee, 'form': form, 'form1': form1})
+        return render(request, "editempdetails.html", {'employee': employee, 'form': form})
     except Exception as e:
         db_logger.exception(e)
         return redirect("/error")
@@ -100,8 +99,7 @@ def update(request, id):
                 employees = Employee.objects.filter(user_id_id=request.session.get('id'))
                 return render(request, "show.html", {'employees': employees, 'message': message})
             else:
-                employee = Employee.objects.get(emp_id=id)
-            return render(request, "editempdetails.html", {'employee': employee, 'form': form})
+                return render(request, "editempdetails.html", {'employee': employee, 'form': form})
 
         else:
             employee = Employee.objects.get(emp_id=id)
@@ -156,8 +154,8 @@ def addemp(request):
             else:
                 return render(request, 'addemployeedetails.html', {'form': form})
         else:
-            form = EmployeeForm()
-        # return render(request, 'addemployeedetails.html', {'form': form})
+            form = EmployeeForm(request.POST)
+            return render(request, 'addemployeedetails.html', {'form': form})
     except Exception as e:
         db_logger.exception(e)
         return redirect("/error")

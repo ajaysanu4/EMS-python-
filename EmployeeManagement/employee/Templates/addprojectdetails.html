@@ -16,77 +16,102 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css"/>
 
     <style>
-    /* Style the tab */
-    .tab {
-      overflow: hidden;
-      border: 1px solid #ccc;
-      background-color: #f1f1f1;
-    }
+         .project-tab {
+            padding: 10%;
+            margin-top: -8%;
+        }
+        .project-tab #tabs{
+            background: #007b5e;
+            color: #eee;
+        }
+        .project-tab #tabs h6.section-title{
+            color: #eee;
+        }
+        .project-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+            color: #0062cc;
+            background-color: transparent;
+            border-color: transparent transparent #f3f3f3;
+            border-bottom: 5px solid !important;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .project-tab .nav-link {
+            border: 1px solid transparent;
+            border-top-left-radius: .25rem;
+            border-top-right-radius: .25rem;
+            color: #0062cc;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .project-tab .nav-link:hover {
+            border: none;
+        }
+        .project-tab thead{
+            background: #f3f3f3;
+            color: #333;
+        }
+        .project-tab a{
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+        }
 
-    /* Style the buttons inside the tab */
-    .tablink {
-      background-color: #303f9f;
-      color: white;
-      float: left;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      padding: 7px 16px
-      font-size: 17px;
-      width: 20%;
-      border: 1px solid #ccc;
-    }
-    .tablink.active {
-      background-color: darkblue;
-      color: white;
-      float: left;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      padding: 7px 16px
-      font-size: 17px;
-      width: 20%;
-    }
-    /* Change background color of buttons on hover */
-    .tab button:hover {
-      background-color: #ddd;
-    }
+        .nav-link:hover {
+            color: #0062cc;
+            border-color: black;
+            background-color: transparent;
+            transition: all 0.3s;
+        }
+        .nav-link {
+            color:#0062cc;
+            background-color:transparent;
+            border-color:transparent transparent #f3f3f3;
+            border-bottom-color: rgb(243, 243, 243);
+            font-size: 16px;
+            font-weight: bold;
+        }
 
-    /* Create an active/current tablink class */
-    .tab button.active {
-      background-color: #ccc;
+    #sidebar ul.components {
+        padding: 20px 0;
+        border-bottom: 1px solid #47748b;
+        padding-top: 100px;
     }
-
-    /* Style the tab content */
-    .tabcontent {
-      display: none;
-      padding: 6px 12px;
-      border: 1px solid #ccc;
-      border-top: none;
-      width:100%;
+    p {
+        margin-bottom: 0.5rem;
+        font-family: inherit;
+        font-weight: 500;
+        line-height: 1.2;
+        color: inherit;
     }
-    .tablink:hover {
-      background-color: #777;
+      .nav-link:hover {
+            color: #0062cc;
+            border-color: black;
+            background-color: transparent;
+            transition: all 0.3s;
+        }
+        .nav-link {
+            color:#0062cc;
+            background-color:transparent;
+            border-color:transparent transparent #f3f3f3;
+            border-bottom-color: rgb(243, 243, 243);
+            font-size: 16px;
+            font-weight: bold;
+        }
+  .form-control {
+         width: 360px;
     }
-    .triangle-right {
-	width: 0;
-	height: 0;
-	border-top: 25px solid transparent;
-	border-left: 50px solid #303f9f;
-	border-bottom: 25px solid transparent;
-}
-#sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
-    padding-top: 100px;
-}
-p {
-    margin-bottom: 0.5rem;
-    font-family: inherit;
-    font-weight: 500;
-    line-height: 1.2;
-    color: inherit;
-}
+     input{
+     width: 360px;
+     height: 40px;
+     border: 1px solid gainsboro;
+     border-radius: 5px;
+     }
+select{
+            width: 360px;
+            height: 40px;
+            border: 1px solid gainsboro;
+            border-radius: 5px;
+        }
 
     </style>
     <!-- Font Awesome JS -->
@@ -104,9 +129,9 @@ p {
 <div class="wrapper">
     <!-- Sidebar  -->
     <nav id="sidebar">
-      <!--  <div class="sidebar-header">
-            <h1>EMS</h1>
-        </div>-->
+        <!--  <div class="sidebar-header">
+              <h1>EMS</h1>
+          </div>-->
 
         <ul class="list-unstyled components">
             <li class="active">
@@ -210,7 +235,8 @@ p {
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item">
                             {% if user.is_authenticated %}
-                            <a id="mc" class="nav-link blink" href="/user_logout"><i class="fas fa-sign-out-alt"></i>&nbsp; Logout</a>
+                            <a id="mc" class="nav-link blink" href="/user_logout"><i class="fas fa-sign-out-alt"></i>&nbsp;
+                                Logout</a>
                             {% else %}
                             <a class="nav-link blink" href="/user_login"><i class="fa fa-user"></i> Login</a>
                             {% endif %}
@@ -234,196 +260,201 @@ p {
             <div class="jumbotron">
                 <div class="card">
                     <div class="card-body ">
-                        <div class="nav nav-tabs">
-                            <button class="tablinks tablink active" id="defaultOpen"
-                                    onclick="openCity(event, 'London')"><h6
-                                    class="mt-2 ml-4"><i class="fa fa-address-card" aria-hidden="true"></i>&nbsp;&nbsp;Basic
-                            </h6></button><div class="triangle-right"></div>
-                            <button class="tablinks tablink" onclick="openCity(event, 'Paris')"><h6
-                                    class="mt-2 ml-4"><i class="fa fa-address-card" aria-hidden="true"></i>&nbsp;&nbsp;Client
-                            </h6></button><div class="triangle-right"></div>
-                            <button class="tablinks tablink" onclick="openCity(event, 'Tokyo')"><h6
-                                    class="mt-2 ml-4"><i class="fa fa-address-card" aria-hidden="true"></i>&nbsp;&nbsp;Budget
-                            </h6></button><div class="triangle-right"></div>
-                        </div>
+
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                                   role="tab" aria-controls="nav-home" aria-selected="true">Project Tab 1</a>
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                                   role="tab" aria-controls="nav-profile" aria-selected="false">Project Tab 2</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
+                                   role="tab" aria-controls="nav-contact" aria-selected="false">Project Tab 3</a>
+                            </div>
+                        </nav>
                         <form method="post" class="post-form " action="/addproject">
                             {% csrf_token %}
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-row">
-                                        <div id="London" class="tabcontent">
-                                            <p>Basic Information</p>
-                                            <div class="form-group col-md-6">
-                                                <div class="col">
-                                                    <label for="project_id">Project Id:</label><br>
-                                                    <input type="number" name="project_id" id="project_id"
-                                                           class="form-control">
-                                                </div>
-                                                <div class="col mt-1">
-                                                    {%for error in form.project_id.errors %}
-                                                    <div class="alert alert-danger" role="alert">
-                                                        <p class="mt-1">{{error}}</p>
+                                        <div class="tab-content" id="nav-tabContent">
+                                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                                 aria-labelledby="nav-home-tab">
+                                                <p>Basic Information</p>
+                                                <div class="form-group">
+                                                    <div>
+                                                        <label for="project_id">Project Id:</label><br>
+                                                        {{form.project_id}}
                                                     </div>
-                                                    {%endfor%}
+                                                    <div class=" mt-1">
+                                                        {%for error in form.project_id.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <div>
+                                                        <label for="project_name">Project Name:</label><br>
+                                                        {{form.project_name}}
+                                                    </div>
+                                                    <div class=" mt-1">
+                                                        {%for error in form.project_name.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <div>
+                                                        <label for="project_description">Project
+                                                            Description:</label><br>
+                                                        {{form.project_description}}
+                                                    </div>
+                                                    <div class=" mt-1">
+                                                        {%for error in form.project_description.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div>
+                                                        <label for="project_company">Project Company:</label><br>
+                                                        {{form.project_company}}
+                                                    </div>
+                                                    <div class=" mt-1">
+                                                        {%for error in form.project_company.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div>
+                                                        <label for="project_owner">Project Owner:</label><br>
+                                                        {{form.project_owner}}
+                                                    </div>
+                                                    <div class=" mt-1">
+                                                        {%for error in form.project_owner.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div>
+                                                        <label for="project_category">Project Category:</label><br>
+                                                        {{form.project_category}}
+                                                    </div>
+                                                    <div class=" mt-1">
+                                                        {%for error in form.project_category.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <div class="col">
-                                                    <label for="project_name">Project Name:</label><br>
-                                                    <input type="text" name="project_name" id="project_name"
-                                                           class="form-control">
-                                                </div>
-                                                <div class="col mt-1">
-                                                    {%for error in form.project_name.errors %}
-                                                    <div class="alert alert-danger" role="alert">
-                                                        <p class="mt-1">{{error}}</p>
-                                                    </div>
-                                                    {%endfor%}
-                                                </div>
-                                                <div class="col">
-                                                    <label for="project_description">Project Description:</label><br>
-                                                    <input type="text" name="project_description"
-                                                           id="project_description"
-                                                           class="form-control">
-                                                </div>
-                                                <div class="col mt-1">
-                                                    {%for error in form.project_description.errors %}
-                                                    <div class="alert alert-danger" role="alert">
-                                                        <p class="mt-1">{{error}}</p>
-                                                    </div>
-                                                    {%endfor%}
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <div class="col">
-                                                    <label for="project_company">Project Company:</label><br>
-                                                    <input type="text" name="project_company" id="project_company"
-                                                           class="form-control">
-                                                </div>
-                                                <div class="col mt-1">
-                                                    {%for error in form.project_company.errors %}
-                                                    <div class="alert alert-danger" role="alert">
-                                                        <p class="mt-1">{{error}}</p>
-                                                    </div>
-                                                    {%endfor%}
-                                                </div>
-                                                <div class="col">
-                                                    <label for="project_owner">Project Owner:</label><br>
-                                                    <input type="text" name="project_owner" id="project_owner"
-                                                           class="form-control">
-                                                </div>
-                                                <div class="col mt-1">
-                                                    {%for error in form.project_owner.errors %}
-                                                    <div class="alert alert-danger" role="alert">
-                                                        <p class="mt-1">{{error}}</p>
-                                                    </div>
-                                                    {%endfor%}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="Paris" class="tabcontent">
-                                            <p>Client Information</p>
-                                            <div class="form-group col-md-6">
-                                                <div class="col col-md-6">
-                                                    <label for="project_category">Project Category:</label><br>
-                                                    {{form.project_category}}
-                                                </div>
-                                                <div class="col mt-1">
-                                                    {%for error in form.project_category.errors %}
-                                                    <div class="alert alert-danger" role="alert">
-                                                        <p class="mt-1">{{error}}</p>
-                                                    </div>
-                                                    {%endfor%}
-                                                </div>
-                                                <div class="col">
-                                                    <label for="project_status">Project Status:</label><br>
-                                                    {{form.project_status}}
-                                                </div>
-                                                <div class="col mt-1">
-                                                    {%for error in form.project_status.errors %}
-                                                    <div class="alert alert-danger" role="alert">
-                                                        <p class="mt-1">{{error}}</p>
-                                                    </div>
-                                                    {%endfor%}
-                                                </div>
-                                            </div>
+                                            <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                                 aria-labelledby="nav-profile-tab">
+                                                <p>Client Information</p>
 
-                                            <div class="form-group col-md-6">
-                                                <div class="col">
-                                                    <label for="project_start_date">Project Start Date:</label><br>
-                                                    <input type="date" name="project_start_date" id="project_start_date"
-                                                           class="form-control">
-                                                </div>
-                                                <div class="col mt-1">
-                                                    {%for error in form.project_start_date.errors %}
-                                                    <div class="alert alert-danger" role="alert">
-                                                        <p class="mt-1">{{error}}</p>
+                                                <div class="form-group">
+                                                    <div>
+                                                        <label for="project_status">Project Status:</label><br>
+                                                        {{form.project_status}}
                                                     </div>
-                                                    {%endfor%}
-                                                </div>
-                                                <div class="col">
-                                                    <label for="project_end_date">Project End Date:</label><br>
-                                                    <input type="date" name="project_end_date" id="project_end_date"
-                                                           class="form-control">
-                                                </div>
-                                                <div class="col mt-1">
-                                                    {%for error in form.project_end_date.errors %}
-                                                    <div class="alert alert-danger" role="alert">
-                                                        <p class="mt-1">{{error}}</p>
+                                                    <div class=" mt-1">
+                                                        {%for error in form.project_status.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
                                                     </div>
-                                                    {%endfor%}
                                                 </div>
-                                            </div>
 
-                                        </div>
-                                        <div id="Tokyo" class="tabcontent">
-                                            <p>Budget Information</p>
-                                            <div class="form-group col-md-6">
-                                                <div class="col">
-                                                    <label for="project_budget">Project Budget:</label><br>
-                                                    <input type="number" name="project_budget" id="project_budget"
-                                                           class="form-control">
-                                                </div>
-                                                <div class="col mt-1">
-                                                    {%for error in form.project_budget.errors %}
-                                                    <div class="alert alert-danger" role="alert">
-                                                        <p class="mt-1">{{error}}</p>
+                                                <div class="form-group">
+                                                    <div>
+                                                        <label for="project_start_date">Project Start Date:</label><br>
+                                                        {{form.project_start_date}}
                                                     </div>
-                                                    {%endfor%}
-                                                </div>
-                                                <div class="col">
-                                                    <label for="project_summary">Project Summary:</label><br>
-                                                    <input type="text" name="project_summary" id="project_summary"
-                                                           class="form-control">
-                                                </div>
-                                                <div class="col mt-1">
-                                                    {%for error in form.project_summary.errors %}
-                                                    <div class="alert alert-danger" role="alert">
-                                                        <p class="mt-1">{{error}}</p>
+                                                    <div class=" mt-1">
+                                                        {%for error in form.project_start_date.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
                                                     </div>
-                                                    {%endfor%}
                                                 </div>
-                                            </div>
+                                                <div class="form-group">
+                                                    <div>
+                                                        <label for="project_end_date">Project End Date:</label><br>
+                                                        {{form.project_end_date}}
+                                                    </div>
+                                                    <div class=" mt-1">
+                                                        {%for error in form.project_end_date.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
+                                                    </div>
+                                                </div>
 
-                                            <div class="form-group col-md-6">
-                                                <div class="col">
-                                                    <label for="project_record">Project Record:</label><br>
-                                                    <input type="text" name="project_record" id="project_record"
-                                                           class="form-control">
-                                                </div>
-                                                <div class="col mt-1">
-                                                    {%for error in form.project_record.errors %}
-                                                    <div class="alert alert-danger" role="alert">
-                                                        <p class="mt-1">{{error}}</p>
+                                            </div>
+                                            <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                                 aria-labelledby="nav-contact-tab">
+                                                <p>Budget Information</p>
+                                                <div class="form-group">
+                                                    <div>
+                                                        <label for="project_budget">Project Budget:</label><br>
+                                                        {{form.project_budget}}
                                                     </div>
-                                                    {%endfor%}
+                                                    <div class=" mt-1">
+                                                        {%for error in form.project_budget.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div>
+                                                        <label for="project_summary">Project Summary:</label><br>
+                                                        {{form.project_summary}}
+                                                    </div>
+                                                    <div class="col mt-1">
+                                                        {%for error in form.project_summary.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div>
+                                                        <label for="project_record">Project Record:</label><br>
+                                                        {{form.project_record}}
+                                                    </div>
+                                                    <div class="col mt-1">
+                                                        {%for error in form.project_record.errors %}
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <p class="mt-1">{{error}}</p>
+                                                        </div>
+                                                        {%endfor%}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <div>
-                                                <button type="submit" class="btn btn-primary mt-3">Submit
-                                                </button>
+                                            <div class="form-group col-md-6">
+                                                <div>
+                                                    <button type="submit" class="btn btn-primary mt-3">Submit
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -436,7 +467,6 @@ p {
             </div>
         </div>
     </div>
-
 
 </div>
 </body>
@@ -467,6 +497,9 @@ p {
         });
 
 
+
+
+
 </script>
 <script>
 function openCity(evt, cityName) {
@@ -486,11 +519,19 @@ function openCity(evt, cityName) {
 document.getElementById("defaultOpen").click();
 
 
+
+
+
+
 </script>
 <script>
     setInterval(function() {
         $(".alert").hide();
     }, 10000);
+
+
+
+
 
 </script>
 </html>

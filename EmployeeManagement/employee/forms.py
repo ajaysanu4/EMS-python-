@@ -311,9 +311,12 @@ class ProjectForm(forms.ModelForm):
 
 
 class UserRegistrationForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+    confirm_password = forms.CharField(widget=forms.PasswordInput())
+
     class Meta:
         model = User
-        fields = ('username', 'password', 'email')
+        fields = ('username', 'email', 'password')
 
     def clean_username_data(self):
         data = self.cleaned_data.get('username')
@@ -322,6 +325,14 @@ class UserRegistrationForm(forms.ModelForm):
         if available:
             raise forms.ValidationError()
         return data
+
+    def clean(self):
+        cleaned_data = super(UserRegistrationForm, self).clean()
+        password = cleaned_data.get("password")
+        confirm_password = cleaned_data.get("confirm_password")
+        if password != confirm_password:
+            self.add_error('confirm_password', "Password and Confirm Password does not match")
+        return cleaned_data
 
 
 class UserForm(forms.Form):
@@ -366,3 +377,6 @@ class EmployeeForm(forms.ModelForm):
         if available:
             raise forms.ValidationError()
         return data
+
+
+
