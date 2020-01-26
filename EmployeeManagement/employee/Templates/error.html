@@ -16,6 +16,16 @@
     <!-- Our Custom CSS -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css"/>
+    <style>
+        p {
+    margin-bottom: 0.5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit;
+}
+
+    </style>
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
             integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
@@ -63,6 +73,8 @@
             <h3>Error...!!</h3>
             <h5 style="color:red;font-weight:bold">Some Error occured Please Try again Later.....</h5>
         </div>
+    </div>
+</div>
 </body>
 <!-- jQuery CDN - Slim version (=without AJAX) -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -76,5 +88,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
+<script>
+    setInterval(function() {
+        $(".alert").hide();
+    }, 10000);
 
+</script>
 </html>

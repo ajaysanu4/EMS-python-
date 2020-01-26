@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css"/>
 
     <style>
-    body {font-family: Arial;}
-
     /* Style the tab */
     .tab {
       overflow: hidden;
@@ -77,6 +75,18 @@
 	border-left: 50px solid #303f9f;
 	border-bottom: 25px solid transparent;
 }
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+    padding-top: 100px;
+}
+p {
+    margin-bottom: 0.5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit;
+}
 
     </style>
     <!-- Font Awesome JS -->
@@ -94,19 +104,19 @@
 <div class="wrapper">
     <!-- Sidebar  -->
     <nav id="sidebar">
-        <div class="sidebar-header">
+      <!--  <div class="sidebar-header">
             <h1>EMS</h1>
-        </div>
+        </div>-->
 
         <ul class="list-unstyled components">
             <li class="active">
                 <div>
                     <div id="profile_photo">
                     <span>&nbsp;&nbsp;<img src="{% static 'images/profile.jpg' %}" style="height:65px;width:65px;"
-                                           alt="My profile"></span>
+                                           alt="My profile"></span>&nbsp;&nbsp;&nbsp;
                         <span id="hide">
-                             <h4>&nbsp;&nbsp;&nbsp;{{user.username}}</h4>
-                        <h6>&nbsp;&nbsp;<i id="ho" class="fa fa-circle" aria-hidden="true"></i>&nbsp;Logged in</h6>
+                             <h5>{{user.username}}</h5>
+                        <h6><i id="ho" class="fa fa-circle" aria-hidden="true"></i>&nbsp;Logged in</h6>
                         </span>
                     </div>
                 </div>
@@ -216,7 +226,7 @@
         </nav>
         <div>
             <div class="headings">
-                <h4 class="pt-3 pl-4" style="color:white;">Add Project</h4>
+                <h4 class="pt-3" style="color:white;margin-left: 34px;">Add Project</h4>
             </div>
         </div>
 
@@ -480,6 +490,7 @@ document.getElementById("defaultOpen").click();
 <script>
     setInterval(function() {
         $(".alert").hide();
-    }, 5000);
+    }, 10000);
+
 </script>
 </html>

@@ -6,6 +6,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
+    font-size: 15px;
 }
 
 p {
@@ -264,10 +265,6 @@ transition:all 0.3s;
     background: #6d7fcc;
 }
 
-#sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
-}
 
 #sidebar ul p {
     color: #fff;
@@ -331,7 +328,11 @@ a.article:hover {
     background: #6d7fcc !important;
     color: #fff !important;
 }
-
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+    padding-top: 100px;
+}
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
