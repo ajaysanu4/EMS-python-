@@ -43,6 +43,8 @@
             border: 1px solid gainsboro;
             border-radius: 5px;
         }
+
+
     </style>
 
     <!-- Font Awesome JS -->
@@ -73,10 +75,10 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                         <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="/auth_login"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</a>
                         </li>
-                          <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="/admin"><i class="fas fa-user-cog"></i>&nbsp;Admin Login</a>
                         </li>
                         <li class="nav-item">
@@ -116,11 +118,13 @@
                                     </div>
                                 </div>
                                 <div class="col mt-1">
-                                    {%for error in form.password.errors %}
+                                    {%if form.password.errors%}
                                     <div class="alert alert-danger" role="alert">
+                                        {%for error in form.password.errors %}
                                         <h6 class="mt-1">{{error}}</h6>
+                                        {%endfor%}
                                     </div>
-                                    {%endfor%}
+                                    {%endif%}
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
@@ -194,14 +198,12 @@
             });
         });
 
-
-
-
 </script>
 <script>
     setInterval(function() {
         $(".alert").hide();
-    }, 10000);
+    }, 15000);
+
 
 </script>
 

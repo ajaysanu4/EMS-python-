@@ -43,6 +43,7 @@
             border: 1px solid gainsboro;
             border-radius: 5px;
         }
+
     </style>
 
     <!-- Font Awesome JS -->
@@ -76,7 +77,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/auth_login"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</a>
                         </li>
-                          <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="/admin"><i class="fas fa-user-cog"></i>&nbsp;Admin Login</a>
                         </li>
                         <li class="nav-item">
@@ -89,53 +90,54 @@
 
         </nav>
         <div id="login">
-            <div class="container">
-                <div id="login-row" class="row justify-content-center align-items-center">
-                    <div id="login-column" class="col-md-6">
-                        <div id="login-box" class="col-md-12">
-                            <form id="login-form" method="post" class="post-form " action="{% url 'user_login' %}">
-                                {% csrf_token %}
-                                <h3 class="text-center  mt-2">Login</h3>
-                                <div class="col">
-                                    <label for="username">Username:</label><br>
-                                    <input type="text" name="username" id="username" class="form-control">
+        </div>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" method="post" class="post-form " action="{% url 'user_login' %}">
+                            {% csrf_token %}
+                            <h3 class="text-center  mt-2">Login</h3>
+                            <div class="col">
+                                <label for="username">Username:</label><br>
+                                <input type="text" name="username" id="username" class="form-control">
+                            </div>
+                            <div class="col mt-1">
+                                {%for error in form.username.errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    <h6 class="mt-1">{{error}}</h6>
                                 </div>
-                                <div class="col mt-1">
-                                    {%for error in form.username.errors %}
-                                    <div class="alert alert-danger" role="alert">
-                                        <h6 class="mt-1">{{error}}</h6>
-                                    </div>
-                                    {%endfor%}
+                                {%endfor%}
+                            </div>
+                            <div class="col mt-1">
+                                {%if message %}
+                                <div class="alert alert-danger" role="alert">
+                                    <h6 class="mt-1">{{message}}</h6>
                                 </div>
-                                <div class="col mt-1">
-                                    {%if message %}
-                                    <div class="alert alert-danger" role="alert">
-                                        <h6 class="mt-1">{{message}}</h6>
-                                    </div>
-                                    {% endif %}
+                                {% endif %}
+                            </div>
+                            <div class="col">
+                                <label for="password">Password:</label><br>
+                                <input type="password" name="password" id="password" class="form-control">
+                            </div>
+                            <div class="col mt-1">
+                                {%for error in form.password.errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    <h6 class="mt-1">{{error}}</h6>
                                 </div>
-                                <div class="col">
-                                    <label for="password">Password:</label><br>
-                                    <input type="password" name="password" id="password" class="form-control">
+                                {%endfor%}
+                            </div>
+                            <div class="col mt-2 mb-2">
+                                <div class="form-group">
+                                    <input type="submit" name="submit" class="btn  btn-md" value="submit">
                                 </div>
-                                <div class="col mt-1">
-                                    {%for error in form.password.errors %}
-                                    <div class="alert alert-danger" role="alert">
-                                        <h6 class="mt-1">{{error}}</h6>
-                                    </div>
-                                    {%endfor%}
-                                </div>
-                                 <div class="col mt-2 mb-2">
-                                    <div class="form-group">
-                                        <input type="submit" name="submit" class="btn  btn-md" value="submit">
-                                    </div>
-                                </div>
-                                <div id="register-link" class="text-right mb-2">
-                                    <a href="/auth_register">Register here</a>
-                                </div>
-                            </form>
+                            </div>
+                            <div id="login-link" class="text-right mb-2">
+                                <a href="/auth_register">Register here</a>
+                            </div>
 
-                        </div>
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -173,11 +175,13 @@
             });
         });
 
+
 </script>
 <script>
     setInterval(function() {
         $(".alert").hide();
-    }, 10000);
+    }, 15000);
+
 
 </script>
 </html>

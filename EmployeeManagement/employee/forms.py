@@ -1,3 +1,5 @@
+import re
+
 from django import forms
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -330,6 +332,19 @@ class UserRegistrationForm(forms.ModelForm):
         cleaned_data = super(UserRegistrationForm, self).clean()
         password = cleaned_data.get("password")
         confirm_password = cleaned_data.get("confirm_password")
+        if len(password) < 8:
+            self.add_error('password', "The password Must be 8 to 20 characters in length")
+        else:
+            if re.search('[a-z,A-Z]', password) is None:
+                self.add_error('password', "Password should have atleast 1 letter")
+            if re.search('[0-9]', password) is None:
+                self.add_error('password', "Password should have atleast 1 digit")
+            if re.search('[a-z]', password) is None:
+                self.add_error('password', "Password should have atleast 1 Lowecase")
+            if re.search('[A-Z]', password) is None:
+                self.add_error('password', "Password should have atleast 1 Uppercase")
+            if re.search('\W', password) is None:
+                self.add_error('password', "Password should have atleast 1 Special Character")
         if password != confirm_password:
             self.add_error('confirm_password', "Password and Confirm Password does not match")
         return cleaned_data
@@ -377,6 +392,3 @@ class EmployeeForm(forms.ModelForm):
         if available:
             raise forms.ValidationError()
         return data
-
-
-
