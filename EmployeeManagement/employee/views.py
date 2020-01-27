@@ -184,8 +184,8 @@ def addproject(request):
         return redirect("/error")
 
 
-def test(request):
-    return render(request, "testing.html")
+def help(request):
+    return render(request, "help.html")
 
 
 def auth_login(request):
@@ -273,8 +273,10 @@ def register(request):
         if form.is_valid():
             user = form.save()
             user.set_password(user.password)
-            user.save();
-            return redirect("/dashboard")
+            user.save()
+            form = UserForm()
+            register_message = "User Registered Successfully"
+            return render(request, 'login.html', {'form': form, 'register_message': register_message})
         else:
             return render(request, 'register.html', {'form': form})
     else:

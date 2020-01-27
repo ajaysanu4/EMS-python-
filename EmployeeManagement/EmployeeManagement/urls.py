@@ -36,7 +36,7 @@ urlpatterns = [
     path('update/<int:id>', views.update, name='login.html'),
     path('error', views.error, name='error.html'),
     path('update3/<int:id>', views.update3, name='show.html'),
-    path('test', views.test),
+    path('help', views.help),
     path('deleteEmp/<int:id>', views.deleteEmp),
     path('deletePro/<int:id>', views.deletePro),
     path('auth_register', views.auth_register, name='register.html'),

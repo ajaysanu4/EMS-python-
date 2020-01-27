@@ -2,10 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7a7ec26-1a79-4507-a1bc-4dabb6972245" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/employee/Templates/help.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeeManagement/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeeManagement/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee/Templates/addemployeedetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/employee/Templates/addemployeedetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee/Templates/addprojectdetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/employee/Templates/addprojectdetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee/Templates/editempdetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/employee/Templates/editempdetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee/Templates/editprojectdetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/employee/Templates/editprojectdetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee/Templates/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/employee/Templates/error.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee/Templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/employee/Templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/employee/Templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/employee/Templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/employee/Templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/employee/Templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/employee/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/employee/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee/Templates/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/employee/Templates/show.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee/Templates/showprojects.html" beforeDir="false" afterPath="$PROJECT_DIR$/employee/Templates/showprojects.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee/Templates/testing.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/employee/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,16 +43,16 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/employee/Templates" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ajays\Desktop\ProjectAnonymous1\EMS-python-\EmployeeManagement\employee\Templates" />
+      <recent name="C:\Users\ajays\Desktop\ProjectAnonymous1\EmployeeManagement\employee\Templates" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ajays\Desktop\ProjectAnonymous1\EmployeeManagement\employee\static\images" />
       <recent name="C:\Users\ajays\Desktop\ProjectAnonymous1\EmployeeManagement\employee\static\css" />
       <recent name="C:\Users\ajays\Desktop\ProjectAnonymous1\EmployeeManagement\employee\static" />
       <recent name="C:\Users\ajays\Desktop\ProjectAnonymous1\EmployeeManagement\employee\Templates" />
       <recent name="C:\Users\ajays\Desktop\ProjectAnonymous1\EmployeeManagement\employee\statics" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\ajays\Desktop\ProjectAnonymous1\EMS-python-\EmployeeManagement\employee\Templates" />
-      <recent name="C:\Users\ajays\Desktop\ProjectAnonymous1\EmployeeManagement\employee\Templates" />
     </key>
   </component>
   <component name="RunDashboard">
