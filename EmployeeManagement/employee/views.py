@@ -1,14 +1,19 @@
+import export as export
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, request
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.views import View
+
 from employee.forms import EmployeeForm, ProjectForm, UserForm, UserRegistrationForm
 from employee.models import Employee, ProjectDetails
 import logging
 
 db_logger = logging.getLogger('db')
+
+simple_variable = 0
 
 
 @login_required(login_url='/auth_login')
@@ -34,6 +39,8 @@ def show(request):
 def showprojects(request):
     try:
         projects = ProjectDetails.objects.filter(user_id_id=request.session.get('id'))
+        global var;
+        var = request.session.get('id')
         return render(request, "showprojects.html", {'projects': projects})
     except Exception as e:
         db_logger.exception(e)
@@ -216,6 +223,9 @@ def user_login(request):
                         variable = User.objects.filter(username=username).values('id')
                         for a in variable:
                             request.session['id'] = a['id']
+                        global simple_variable
+                        simple_variable = request.session['id']
+                        print(simple_variable)
                         return redirect("/dashboard")
                 else:
                     message = "Unable to login. Either username or password is incorrect."
@@ -282,3 +292,6 @@ def register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'register.html', {'form': form})
+
+
+
