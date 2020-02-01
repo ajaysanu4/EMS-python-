@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d7a7ec26-1a79-4507-a1bc-4dabb6972245" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeeManagement/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeeManagement/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeeManagement/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeeManagement/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/employee/Templates/editempdetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/employee/Templates/editempdetails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/employee/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/employee/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee/Templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/employee/Templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/employee/static/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/employee/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/employee/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -109,5 +112,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/EmployeeManagement/wsgi.py</url>
+          <line>9</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

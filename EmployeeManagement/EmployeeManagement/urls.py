@@ -13,32 +13,33 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
 
 from employee import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls, name='admin'),
-    path('', views.dashboard, name='dashboard.html'),
-    path('dashboard', views.dashboard, name='dashboard.html'),
-    path('showprojects', views.showprojects, name='showprojects.html'),
-    path('show', views.show, name='show.html'),
-    path('add', views.add, name='addemployeedetails.html'),
-    path('user_logout', views.user_logout, name='user_logout.html'),
-    path('add3', views.add3, name='addprojectdetails.html'),
-    path('addemp', views.addemp),
-    path('auth_login', views.auth_login, name='login.html'),
-    path('user_login', views.user_login, name='user_login'),
-    path('addproject', views.addproject),
-    path('editempdetails/<int:id>', views.editempdetails),
-    path('editprojectdetails/<int:id>', views.editprojectdetails),
-    path('update/<int:id>', views.update, name='login.html'),
-    path('error', views.error, name='error.html'),
-    path('update3/<int:id>', views.update3, name='show.html'),
-    path('help', views.help),
-    path('deleteEmp/<int:id>', views.deleteEmp),
-    path('deletePro/<int:id>', views.deletePro),
-    path('auth_register', views.auth_register, name='register.html'),
-    path('user_register', views.register, name='register.html'),
+    url(r'^admin/', admin.site.urls),
+    url(r'^$', views.dashboard, name='dashboard.html'),
+    url(r'^dashboard$', views.dashboard, name='dashboard'),
+    url(r'^showprojects$', views.showprojects, name='showprojects.html'),
+    url(r'^show$', views.show, name='show.html'),
+    url(r'^add$', views.add, name='addemployeedetails.html'),
+    url(r'^user_logout$', views.user_logout, name='user_logout.html'),
+    url(r'^add3$', views.add3, name='addprojectdetails.html'),
+    url(r'^addemp$', views.addemp),
+    url(r'^auth_login$', views.auth_login, name='login.html'),
+    url(r'^user_login$', views.user_login, name='user_login'),
+    url(r'^addproject$', views.addproject),
+    url(r'^editempdetails/(?P<id>[0-9]+)/$', views.editempdetails, name='editempdetails'),
+    url(r'^editprojectdetails/(?P<id>[0-9]+)/$', views.editprojectdetails),
+    url(r'^update/(?P<id>[0-9]+)$', views.update, name='login.html'),
+    url(r'^error$', views.error, name='error.html'),
+    url(r'^update3/(?P<id>[0-9]+)$', views.update3, name='show.html'),
+    url(r'^help$', views.help),
+    url(r'^deleteEmp/(?P<id>[0-9]+)$', views.deleteEmp),
+    url(r'^deletePro/(?P<id>[0-9]+)$', views.deletePro),
+    url(r'^auth_register$', views.auth_register, name='register.html'),
+    url(r'^user_register$', views.register, name='register.html'),
 ]

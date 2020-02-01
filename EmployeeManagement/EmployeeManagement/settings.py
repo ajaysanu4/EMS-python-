@@ -23,8 +23,16 @@ SECRET_KEY = '!=0mzf@!5)(!nnyd1-tkli8$m05i02i(*z$+^oplaf4*jz235l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
+SECURE_HSTS_SECONDS = 31536000
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_HSTS_PRELOAD = True
+X_FRAME_OPTIONS = 'DENY'
+#CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+#SECURE_SSL_REDIRECT = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 # Application definition
 
@@ -117,8 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
-import pyodbc
+STATIC_URL = '/static/'
 
 DATABASES = {
     'default': {
@@ -133,8 +140,6 @@ DATABASES = {
         },
     },
 }
-
-STATIC_URL = '/static/'
 
 # Add these new lines
 STATICFILES_DIRS = (

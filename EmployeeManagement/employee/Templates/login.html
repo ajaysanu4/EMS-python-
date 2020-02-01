@@ -44,11 +44,6 @@
             border-radius: 5px;
         }
 
-
-
-
-
-
     </style>
 
     <!-- Font Awesome JS -->
@@ -59,6 +54,7 @@
             integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
             crossorigin="anonymous"></script>
     {% csrf_token %}
+
 </head>
 
 <body>
@@ -99,8 +95,8 @@
                 <div id="login-row" class="row justify-content-center align-items-center">
                     <div id="login-column" class="col-md-6">
                         <div id="login-box" class="col-md-12">
-                            <form id="login-form" method="post" class="post-form " action="{% url 'user_login' %}">
-                                {% csrf_token %}
+                            <form id="login-form" method="POST" class="post-form " action="/user_login">
+                                 {% csrf_token %}
                                 <h3 class="text-center  mt-2">Login</h3>
                                 <div class="col">
                                     <label for="username">Username:</label><br>

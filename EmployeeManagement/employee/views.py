@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect, request
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
+from django.views.decorators.csrf import csrf_exempt
 
 from employee.forms import EmployeeForm, ProjectForm, UserForm, UserRegistrationForm
 from employee.models import Employee, ProjectDetails
@@ -14,6 +15,18 @@ import logging
 db_logger = logging.getLogger('db')
 
 simple_variable = 0
+
+
+class MyClass:
+    managername = ""
+    projectname = ""
+    employeedesignation = ""
+    employeetype = ""
+    employeecountry = ""
+    employeemeritalstatus=""
+
+
+myobject = MyClass()
 
 
 @login_required(login_url='/auth_login')
@@ -73,8 +86,16 @@ def add3(request):
 def editempdetails(request, id):
     try:
         employee = Employee.objects.get(emp_id=id)
+        employee = Employee.objects.get(emp_id=id)
+        myobject.projectname = employee.emp_project_id.project_name
+        myobject.managername = employee.emp_manager_id.emp_first_name + " " + employee.emp_manager_id.emp_last_name
+        myobject.employeetype = employee.emp_type
+        myobject.employeedesignation = employee.emp_designation
+        myobject.employeecountry = employee.emp_country
+        myobject.employeemeritalstatus=employee.emp_marital_status
         form = EmployeeForm(request.POST, instance=employee)
-        return render(request, "editempdetails.html", {'employee': employee, 'form': form})
+        return render(request, "editempdetails.html",
+                      {'employee': employee, 'form': form, 'myobject': myobject})
     except Exception as e:
         db_logger.exception(e)
         return redirect("/error")
@@ -106,7 +127,10 @@ def update(request, id):
                 employees = Employee.objects.filter(user_id_id=request.session.get('id'))
                 return render(request, "show.html", {'employees': employees, 'message': message})
             else:
-                return render(request, "editempdetails.html", {'employee': employee, 'form': form})
+                employee = Employee.objects.get(emp_id=id)
+
+                return render(request, "editempdetails.html",
+                              {'employee': employee, 'form': form, 'myobject': myobject})
 
         else:
             employee = Employee.objects.get(emp_id=id)
@@ -208,6 +232,7 @@ def error(request):
         return redirect("/error")
 
 
+@csrf_exempt
 def user_login(request):
     try:
         if request.method == "POST":
@@ -292,6 +317,3 @@ def register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'register.html', {'form': form})
-
-
-
