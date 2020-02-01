@@ -97,7 +97,7 @@
 
     .card{
     border-radius: 0rem;
-        box-shadow: 0px 0 7px 0px rgba(0, 0, 0, 0.3), 0 0px 0px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 1px 1px 30px rgba(48, 63, 159, 0.5);
     }
 
 
@@ -111,6 +111,8 @@
 #id_emp_designation{
     width:344px;
 }
+
+
 
 
 
@@ -315,7 +317,7 @@
                                     <div class="form-group col-md-6">
                                         <div>
                                             <button type="submit" onclick="myFunction()" class="btn btn-primary mt-3">
-                                                Edit
+                                                <i class="fa fa-wrench" aria-hidden="true"></i>&nbsp;Edit Form
                                             </button>
                                         </div>
                                     </div>
@@ -545,7 +547,7 @@
                                                                 <div>
                                                                     <input type="date" name="emp_hire_date"
                                                                            class="form-control"
-                                                                           value=" {{ employee.emp_hire_date }}">
+                                                                           value="{{ myobject.employeehiredate }}">
                                                                 </div>
                                                                 <div class=" mt-1">
                                                                     {%for error in form.emp_hire_date.errors %}
@@ -558,7 +560,7 @@
                                                             <div class="col">
                                                                 <label class="col-form-label">Employee
                                                                     Designation:</label>
-                                                                <div >
+                                                                <div>
                                                                     <div class=" alert--info" style="font-weight:bold;"
                                                                          role="alert">
                                                                         <label class=" col-form-label">Current
@@ -638,24 +640,24 @@
                                                                     {%endfor%}
                                                                 </div>
                                                             </div>
-                                                                <div class="col">
-                                                                    <label class=" col-form-label">Employee
-                                                                        State:</label>
-                                                                    <div>
-                                                                        <input type="text" name="emp_state"
-                                                                               class="form-control"
-                                                                               value="{{ employee.emp_state }}">
+                                                            <div class="col">
+                                                                <label class=" col-form-label">Employee
+                                                                    State:</label>
+                                                                <div>
+                                                                    <input type="text" name="emp_state"
+                                                                           class="form-control"
+                                                                           value="{{ employee.emp_state }}">
 
+                                                                </div>
+                                                                <div class=" mt-1">
+                                                                    {%for error in form.emp_state.errors %}
+                                                                    <div class="alert alert-danger" role="alert">
+                                                                        <p class="mt-1">{{error}}</p>
                                                                     </div>
-                                                                    <div class=" mt-1">
-                                                                        {%for error in form.emp_state.errors %}
-                                                                        <div class="alert alert-danger" role="alert">
-                                                                            <p class="mt-1">{{error}}</p>
-                                                                        </div>
-                                                                        {%endfor%}
-                                                                    </div>
+                                                                    {%endfor%}
                                                                 </div>
                                                             </div>
+                                                        </div>
                                                         <div class="form-row ">
                                                             <div class="col">
                                                                 <label class=" col-form-label">Employee Postal
@@ -796,6 +798,8 @@
 
 
 
+
+
 </script>
 
 <script>
@@ -828,11 +832,15 @@ document.getElementById("defaultOpen").click();
 
 
 
+
+
 </script>
 <script>
     setInterval(function() {
         $(".alert").hide();
     }, 10000);
+
+
 
 
 
@@ -903,12 +911,16 @@ $("#id_emp_project_id").attr("disabled", false);
 
 
 
+
+
 </script>
 <script>
 $("#button").on("click",function(){
     isReadOnly=false;
     $("#id_emp_gender").attr("disabled", isReadOnly);
     });
+
+
 
 
 

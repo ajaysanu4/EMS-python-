@@ -24,6 +24,7 @@ class MyClass:
     employeetype = ""
     employeecountry = ""
     employeemeritalstatus=""
+    employeehiredate=""
 
 
 myobject = MyClass()
@@ -93,6 +94,7 @@ def editempdetails(request, id):
         myobject.employeedesignation = employee.emp_designation
         myobject.employeecountry = employee.emp_country
         myobject.employeemeritalstatus=employee.emp_marital_status
+        myobject.employeehiredate=employee.emp_hire_date
         form = EmployeeForm(request.POST, instance=employee)
         return render(request, "editempdetails.html",
                       {'employee': employee, 'form': form, 'myobject': myobject})

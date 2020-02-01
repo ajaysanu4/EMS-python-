@@ -22,7 +22,7 @@ from employee import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.dashboard, name='dashboard.html'),
-    url(r'^dashboard$', views.dashboard, name='dashboard'),
+    path('dashboard', views.dashboard, name='dashboard'),
     url(r'^showprojects$', views.showprojects, name='showprojects.html'),
     url(r'^show$', views.show, name='show.html'),
     url(r'^add$', views.add, name='addemployeedetails.html'),
